@@ -63,7 +63,7 @@
             <h2 class="subheading">A multiple regression analysis to determine the projected statistics for MLB baseball players in the upcoming baseball season</h2>
             <span class="meta">Project Completed March 2021</span>
             <p></p>
-            <pan class="meta"><a href='https://github.com/kwwaite1129/Example-Project-Work/tree/master/Sports%20Image%20Classifier'><b><u>GitHub Repository</b></u></a></span>
+            <pan class="meta"><a href='https://github.com/kwwaite1129/Example-Project-Work/tree/master/MLB%20Baseball%20Statistic%20Prediction'><b><u>GitHub Repository</b></u></a></span>
           </div>
         </div>
       </div>
@@ -80,21 +80,16 @@
           
           <p>A player is said to be a regression candidate if they are expected to “regress to the mean” or have a season that is not as successful as they did the year previously. A regression candidate’s stats would return to normal, lower numbers compared to the previous season. This question would be beneficial for both MLB general managers and fantasy baseball managers (like myself) who are building a team. For the purposes of this project, I will be looking at this model through the lens of a fantasy baseball manager. That is not to say it could not be used by MLB general managers. However, fantasy baseball is how I will be using the model. When identifying if a player is a regression candidate, I will be comparing their expected fantasy points for the upcoming season against the points they had in the previous season. If the player's points are the same or higher than the previous season, then they will not be categorized as a regression candidate. If their expected points decrease by 10% compared to the previous season, then I will categorize them as a regression candidate.</p>
           
-          <!--- <a href="#">
-            <img class="img-fluid" src="img/si_covers.png" alt="">
-          </a>
-          <span class="caption text-muted">Sample Sports Illustrated Covers I attempted to classify.</span> --->
-          
           <h2 class="section-heading">Hypothesis</h2>
 
           <p>My hypothesis is that I can successfully predict the amount of fantasy points a MLB player will have in the upcoming season based on past performance. When drafting a fantasy baseball team it is all about value and drafting players who can contribute the most to your team at a reasonable cost. If you take a player in the first round who is not able to live up to the expectations of their previous season(s), then your season could be in serious jeopardy. Also, when looking for sleepers or mid-round players who also have a major impact on how your team performs during the regular season, it is important to understand who had a one hit wonder type season and which player’s stats will continue to meet expectations. By looking at a variety of metrics collected on MLB players for the past ten years, I want to create a model that will allow the fantasy manager to identify which players to avoid and which players they can trust in the upcoming season during their draft.</p>
 
           <h2 class="section-heading">The Data</h2>
           
-          <!--- <a href="#">
-            <img class="img-fluid" src="img/sport_image_dataset.png" alt="">
+         <a href="#">
+            <img class="img-fluid" src="img/baseball_data.png" alt="">
           </a>
-          <span class="caption text-muted">Sample images from the datatset I will be using to train my model.</span> --->
+          <span class="caption text-muted">Sample images from the datatset I will be using to train my model.</span>
 
           <p>For this project, I will be examining a database containing complete batting and pitching statistics from 1871 to 2020, plus fielding statistics, standings, team stats, managerial records and post-season data. As I mentioned above, although I have access to data going back to 1871, I will only be using data from 2010 through the 2019 season. I am only using the past ten years worth of data because baseball has shifted in playing style over the past ten years. This is mainly a result of increased use of analytics in baseball and shifting strategies due to this analytical adoption. Looking at stats from the 1950s when players were playing baseball a different style is not as useful when looking to identify regression candidates in 2021. Also, I will be excluding the 2020 season from my analysis as this was a shortened season (an outlier) due to the Covid-19 pandemic and will throw off my models.</p>
           
@@ -136,6 +131,11 @@
           
           <p>Once I split my data into a testing and training set, I one hot encoded categorical variables to ensure my categorical variables would be able to be used in my regression modeling, I performed multiple feature reduction strategies including Principal Component Analysis (PCA) and Thresholding Numerical Feature Variance. For PCA, first I standardized the features so that they have the properties of a standard normal distribution with a mean of zero and a standard deviation of one. I then created the PCA with the n_components to 99% so that the variance of the original features would be retained. Thresholding Numerical Feature Variance removed the features with a low variance, i.e. likely containing little information and thus causing unwanted noise in your modeling. I created a variance threshold of 0.5. The variance threshold calculates the variance for each feature, and drops any feature that does not have a threshold greater than 0.5.</p>
           
+          <a href="#">
+            <img class="img-fluid" src="img/pitchers.png" alt="">
+          </a>
+          <span class="caption text-muted">Results from the pitcher modeling</span>
+          
           <h2 class="section-heading">Results</h2>
           
           <p>I ran the batter and pitcher data sets through separate models to avoid overcomplicating the model with unnecessary statistics for the batter/pitcher. To determine what model is the best for predicting future player stats, I then compared the R2 and mean average error (MAE) of each model. To calculate this value, I ran the data through a 5 fold cross validated pipeline and took the mean of those five scores to calculate the final R2 and MAE of each model. In the modeling, I used all of the available, relevant statistics to predict what the next season’s fantasy points will be.</p>
@@ -149,6 +149,10 @@
           
           <p>Using the Lasso Regression model, I ran the 2019 dataset through the model to determine the upcoming 2021 projected fantasy points for a player. I then wrote a Python script that compared the player’s points to their previous season’s points to determine if the player is a regression candidate or not for the upcoming season. If their expected points decrease by 10% compared to the previous season, then I will categorize them as a regression candidate.</p>
           
+          <a href="#">
+            <img class="img-fluid" src="img/batters.png" alt="">
+          </a>
+          <span class="caption text-muted">Results from the batter modeling</span>
           
           <h2 class="section-heading">Conclusion</h2>
           
