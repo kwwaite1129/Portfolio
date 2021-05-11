@@ -142,6 +142,11 @@
           
           <p>As you can see from the above modeling, the Lasso Regression model with all the original features performed best on both the pitcher and batter datasets. The R2 score was very similar for the Naive Bayes model and the Lasso Regression model. However, due to a lower MSE for the Lasso Regression model, I chose this as the model to move forward with. An R2 score of 0.76 for batters and 0.65 for pitchers indicates the model is a strong predictor of next year's fantasy points based on the independent data that was fed into the model. </p>
           
+          <a href="#">
+            <img class="img-fluid" src="img/pitchers.png" alt="">
+          </a>
+          <span class="caption text-muted">Results from the pitcher modeling</span>
+          
           <p>Using the Lasso Regression model, I ran the 2019 dataset through the model to determine the upcoming 2021 projected fantasy points for a player. I then wrote a Python script that compared the player’s points to their previous season’s points to determine if the player is a regression candidate or not for the upcoming season. If their expected points decrease by 10% compared to the previous season, then I will categorize them as a regression candidate.</p>
           
           <a href="#">
@@ -159,16 +164,16 @@
             <img class="img-fluid" src="img/baseball_final.jpg" alt="">
           </a>
           
-          <!--- <h2 class="section-heading">Citations</h2>
+         <h2 class="section-heading">Citations</h2>
           
-          <p>Bennett, A. J. (2020, May 2). List of Top 10 Best Sports Magazines of All Time. Retrieved April 16, 2021, from <a href>https://posora.com/best-sports-magazines/</a><p>
+          <p>Statista. (2020, November 18). Revenue from fantasy sports in the United States 2019, by segment. Retrieved March 17, 2021, from <a href>https://www.statista.com/statistics/820972/revenue-fantasy-sports-segment/</a><p>
 
-          <p>Grand View Research. (2020, March). Image Recognition Market Size Worth $109.4 Billion By 2027. Retrieved April 16, 2021, from <a href>https://www.grandviewresearch.com/press-release/global-image-recognition-market</a></p>
+          <p>The Fantasy Sports & Gaming Association. (2020, February 3). Industry Demographics. Retrieved March 17, 2021, from <a href>https://thefsga.org/industry-demographics/</a></p>
         
-          <p>mediumnok. (2021, April 19). ADAM in 2019 — What’s the next ADAM optimizer - Towards Data Science. Medium. <a href>https://towardsdatascience.com/adam-in-2019-whats-the-next-adam-optimizer-e9b4a924b34f#:%7E:text=Adam%20is%20great%2C%20it’s%20much,2019%20were%20still%20using%20SGD</a></p>
+          <p>Licata, A. (2019, August 2). 42 states have or are moving towards legalizing sports betting – here are the states where sports betting is legal. Retrieved March 31, 2021, from <a href>https://www.businessinsider.com/states-where-sports-betting-legal-usa-2019-7?international=true&r=US&IR=T</a></p>
         
-          <p>Thakur, R. (2020, November 24). Step by step VGG16 implementation in Keras for beginners. Medium. <a href>https://towardsdatascience.com/step-by-step-vgg16-implementation-in-keras-for-beginners-a833c686ae6c</a></p>
-         --->
+          <p>CBS Sports. (n.d.). 2021 CBSSports.com Free Fantasy Baseball Challenge Rules. Retrieved March 31, 2021, from <a href>https://www.cbssports.com/fantasy/baseball/games/free/rules#rules_single_scoring</a></p>
+
         </div>
       </div>
     </div>
