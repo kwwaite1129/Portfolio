@@ -136,6 +136,19 @@
               
           <p>As this is a single-label, multiclass classification problem, I will be using the loss (the ROC curve) and accuracy of the model to validate its ability to correctly classify the images. For my modeling, I split my data into a test and train sets. This allowed me to tune my model and test it against independent data to get an accurate idea of how the models are working.</p>
         
+           <a href="#">
+            <img class="img-fluid" src="img/adam_results.png" alt="">
+          </a>
+          <span class="caption text-muted">Accuracy and ROC curve for Adam VGG-16 modeling results</span>
+          
+          <h2 class="section-heading"Results</h2>
+          
+          <p>For my modeling, I first ran each optimizer through a 5 epoch cycle of various learning rates to determine the best learning rate for each optimizer. Then I ran each model through both optimizers (SGD and Adam) at the best performing learning rate. I ran each model through a training session and determined the best epoch for running the test data through the model. Too many epochs, and I would be overfitting the data. Too few epochs, and I would not have an accurate enough model. You can see the Python code for all of these models in my GitHub Repository. After my extensive modeling through all 9 models for each optimizer, below are the results for each model.</p>
+          
+          <p></p>
+          
+          
+          
         </div>
       </div>
     </div>
