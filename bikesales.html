@@ -123,7 +123,7 @@
           <p>Once the data was collected, inspected, and perfected, I ran my data through seven different regression algorithms to predict MLB players expected fantasy points for the upcoming season. I chose to use regression algorithms to solve this problem because this is a supervised machine learning problem (I know the values of the output and can compare the model against the actual values) and I wanted to predict a continuous variable based on the data fed into my model. The seven models I chose to run my data through include:</p>
                       
           <a href="#">
-            <img class="img-fluid" src="img/bike_sales_model_results.png" alt="">
+            <img class="center" src="img/bike_sales_model_results.png" alt="">
           </a>
           <span class="caption text-muted">Results from my various bike sales models</span>
           
@@ -131,6 +131,11 @@
           
           <p>I chose to go with a multiple linear regression model to predict the quantity of bike models that will be sold in the future. "Linear models make a prediction using a linear function of the input features". As mentioned above, I chose to run my features through 3 different types of linear regression; Standard Linear Regression, Ridge Linear Regression and Lasso Linear regression. The two metrics I used to evaluate my models are R2 and mean square error (MSE). R2, or the coefficient of determination, is how much variance in the target variable that is explained by our model1. MSE is a measurement of the squared sum of all distances between predicted and true values. The higher the value of MSE, the greater the total squared error, and thus the worse the model.</p>
            
+          <a href="#">
+            <img class="img-fluid" src="img/bike_sales_final_results.png" alt="">
+          </a>
+          <span class="caption text-muted">Results from my final bike sales models</span>
+          
           <h2 class="section-heading">Conclusion</h2>
           
           <p>After running all the feature sets through all three models, I determined my best model would be the standard linear regression model with the NMF 50 feature set based on the best R2 and RMSE scores. I then ran the test data through the model and calculated the R2 score to be 0.7. This indicates that 71% of the variance in the quantity of bike models sold can be determined by the features used in the linear regression model. This does not mean the model will predict down to the exact bike how many will be sold. However, a high R2 value like 0.71 indicates this will be able to provide us with an accurate estimate that the franchise owners can use when purchasing inventory for their warehouses.</p>
