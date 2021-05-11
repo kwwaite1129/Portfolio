@@ -104,20 +104,40 @@
           </a>
           <span class="caption text-muted">Sample images from the datatset I will be using to train my model.</span>
 
-          <p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+          <p>For this project, I will be using a sports image dataset from Kaggle that was created in December 2020. The training dataset contains over 11,000 images of 22 different sports and their labels. This dataset will be excellent for building my initial model because it contains images from a variety of sports. One major issue arose with the dataset once I began my exploratory data analysis. The dataset is robust and contains almost every major sport. However, the dataset did not contain any images for american football. This sport may not be popular world wide, however, for my project, it is necessary to include. The overwhelming majority of Sports Illustrated covers contain images from american football. Therefore, I had to create a python function that scraped over 300 images from Google image search that included american football. These images had to be appended to the original dataset I downloaded from Kaggle.</p>
+          
+          <p>Link to the dataset - https://www.kaggle.com/c/logical-rythm-2k20-sports-image-classification/data</p>
+          
+          <p>Link to the data documentation/cookbook - https://www.kaggle.com/c/logical-rythm-2k20-sports-image-classification/overview</p>
 
-          <a href="#">
-            <img class="img-fluid" src="img/post-sample-image.jpg" alt="">
-          </a>
-          <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+          <p>Once my data is collected, cleaned, and formatted correctly for my model, I then scraped images from the Sports Illustrated website for the magazine covers from 2010-2019. I had to manually label each cover for modeling purposes.</p> 
 
-          <p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
-
-          <p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
-
-          <p>Placeholder text by
-            <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by
-            <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p>
+          <p>Link to where images are hosted that will be scraped - https://vault.si.com/vault/archives/2010s/2019</p>
+          
+          <h2 class="section-heading">Method</h2>
+          
+          <p>For the exploratory data analysis portion of the project, I did not have to perform a lot of cleaning or manipulating on the dataset. There are only two columns in the labels dataset (image name and sport) and the images are all provided in the same size/format. As mentioned above, the only major change I made to the dataset was the addition of the images for american football. Otherwise, the images were in the correct format and did not need to be modified for modeling. I had to change the labels from a string to a numerical representation (categorical). However, that was not too difficult.</p>
+          
+          <p>Once the data was collected, inspected, and perfected, I ran my data through 9 different image recognition algorithms. I chose to run my data through various iterations of a Neural Network (NN) and Convoluted Neural Network (CNN) to see what the differences were and what tuning did to each algorithm’s accuracy. I also ran the data through two sets of optimizers for each model; SGD and Adam. I did not have a lot of experience with NNs and CNNs and wanted to see how each optimizer affected the modeling</p>
+          
+          <p>The 9 models I chose to run my data through include:</p>
+          <dl>
+            <dt>Neural Network</dt>
+              <dd>-Simple Neural Network</dd>
+              <dd>-Neural Network with L2 Regularization Penalty</dd>
+              <dd>-Neural Network with L1 Regularization Penalty</dd>
+              <dd>-Neural Network with Simultaneous L1 and L2 Regularization Penalty</dd>
+              <dd>-Neural Network with Dropout Penalty</dd>
+            <dt>Convolutional Neural Network</dt>
+              <dd>-Simple Convolutional Neural Network</dd>
+              <dd>-Convolutional Neural Network with Dropout Penalty</dd>
+              <dd>-Convolutional Neural Network with Data Augmentation and Dropout Penalty</dd>
+            <dt>Convolutional Neural Network using a Pre-Trained Covnet</dt>
+              <dd>-Pre-Trained Covnet VGG-16</dd>
+          </dl>
+              
+          <p>As this is a single-label, multiclass classification problem, I will be using the loss (the ROC curve) and accuracy of the model to validate its ability to correctly classify the images. For my modeling, I split my data into a test and train sets. This allowed me to tune my model and test it against independent data to get an accurate idea of how the models are working.</p>
+        
         </div>
       </div>
     </div>
@@ -156,7 +176,7 @@
               </a>
             </li>
           </ul>
-          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+          <p class="copyright text-muted">Copyright &copy; Kenny Waite 2021</p>
         </div>
       </div>
     </div>
