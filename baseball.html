@@ -76,72 +76,64 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
            <h2 class="section-heading">Overview</h2>
-          <p>Image recognition is a powerful tool that can be used in a variety of use cases throughout any domain. Image recognition is quickly becoming one of the most popular projects for machine learning to automate previously manual tasks performed by a human. In order for an image recognition model to be successful, it must be able to accurately label and categorize images based on the dataset it was trained on. For my second project this semester, I will be taking the Sports Illustrated covers for the past ten years (2010-2019) and running them through a model I created to identify what sport is on the cover of the magazine. </p>
+          <p>Baseball is known as America’s pastime. If you are like 20% of Americans (65M people) participating in some kind of fantasy sports (The Fantasy Sports & Gaming Association, 2020), there is a chance you have played fantasy baseball. Daily Fantasy Sports generated revenue of 2.91 billion U.S. dollars in 2019 (Statista, 2020) and is a growing industry thanks to recent legislation that has loosen sports gambling laws in America. The Supreme Court of the United States lifted the federal ban on sports betting on May 14, 2018 (Licata, 2019). Those of us who play fantasy sports are always looking for that extra edge when it comes to drafting their team for the upcoming season. For my first project this semester, I will be taking a look at various baseball player’s statistics from the previous ten seasons to create a model that will predict the fantasy points for a player in the upcoming season. I will then use those predicted next season’s fantasy points to categorize a baseball player as a regression candidate.</p>
           
-          <blockquote class = "blockquote">The global image recognition market size is expected to reach USD 109.4 billion by 2027, according to a new report by Grand View Research, Inc. The market is anticipated to expand at a CAGR[Compound Annual Growth Rate] of 18.8% from 2020 to 2027, (Grand View Research, 2020).</blockquote>
+          <p>A player is said to be a regression candidate if they are expected to “regress to the mean” or have a season that is not as successful as they did the year previously. A regression candidate’s stats would return to normal, lower numbers compared to the previous season. This question would be beneficial for both MLB general managers and fantasy baseball managers (like myself) who are building a team. For the purposes of this project, I will be looking at this model through the lens of a fantasy baseball manager. That is not to say it could not be used by MLB general managers. However, fantasy baseball is how I will be using the model. When identifying if a player is a regression candidate, I will be comparing their expected fantasy points for the upcoming season against the points they had in the previous season. If the player's points are the same or higher than the previous season, then they will not be categorized as a regression candidate. If their expected points decrease by 10% compared to the previous season, then I will categorize them as a regression candidate.</p>
           
-          <p>Using an image recognition model, the data entry or data governance teams at Sports Illustrated would be able to run these covers through the image recognition model and classify each cover to the sport they belong to. This model, if calibrated correctly, could also perform this classification activity with their entire image library. Instead of having an employee manually go through all of the magazine cover archives and label each magazine cover. The model would be able to do this in a matter of minutes and save valuable company resources.</p>
-          
-          <a href="#">
+          <!--- <a href="#">
             <img class="img-fluid" src="img/si_covers.png" alt="">
           </a>
-          <span class="caption text-muted">Sample Sports Illustrated Covers I attempted to classify.</span>
+          <span class="caption text-muted">Sample Sports Illustrated Covers I attempted to classify.</span> --->
           
           <h2 class="section-heading">Hypothesis</h2>
 
-          <p>My hypothesis is that I can create a model that will accurately label each Sports Illustrated cover based on the sports portrayed on the main image. Classifying images is no easy task for a machine. The machine cannot differentiate one image from another until it is trained on the differences between the images. I believe with the sports image dataset I am using (more on that below in the data section), I can create an accurate model that will correctly classify each sports image. It would be extremely time consuming to have a person manually go through each Sports Illustrated cover and label what sport is represented with the main cover image. Having this historical data would allow Sports Illustrated to perform various analysis including:</p>
+          <p>My hypothesis is that I can successfully predict the amount of fantasy points a MLB player will have in the upcoming season based on past performance. When drafting a fantasy baseball team it is all about value and drafting players who can contribute the most to your team at a reasonable cost. If you take a player in the first round who is not able to live up to the expectations of their previous season(s), then your season could be in serious jeopardy. Also, when looking for sleepers or mid-round players who also have a major impact on how your team performs during the regular season, it is important to understand who had a one hit wonder type season and which player’s stats will continue to meet expectations. By looking at a variety of metrics collected on MLB players for the past ten years, I want to create a model that will allow the fantasy manager to identify which players to avoid and which players they can trust in the upcoming season during their draft.</p>
 
-          <ul>
-            <li>What sports sell the most issues?</li>
-            <li>Are there any trends for sports based on the season/time of the year?</li>
-            <li>What sort of representation is there on the covers?</li>
-            <li>Is Sports Illustrated over representing or under representing any societal, cultural, or sport groups?</li>
-            <li>If a group is underrepresented, how can we become more inclusive while also increasing sales?</li>
-          </ul>
-          
           <h2 class="section-heading">The Data</h2>
           
-          <a href="#">
+          <!--- <a href="#">
             <img class="img-fluid" src="img/sport_image_dataset.png" alt="">
           </a>
-          <span class="caption text-muted">Sample images from the datatset I will be using to train my model.</span>
+          <span class="caption text-muted">Sample images from the datatset I will be using to train my model.</span> --->
 
-          <p>For this project, I will be using a sports image dataset from Kaggle that was created in December 2020. The training dataset contains over 11,000 images of 22 different sports and their labels. This dataset will be excellent for building my initial model because it contains images from a variety of sports. One major issue arose with the dataset once I began my exploratory data analysis. The dataset is robust and contains almost every major sport. However, the dataset did not contain any images for american football. This sport may not be popular world wide, however, for my project, it is necessary to include. The overwhelming majority of Sports Illustrated covers contain images from american football. Therefore, I had to create a python function that scraped over 300 images from Google image search that included american football. These images had to be appended to the original dataset I downloaded from Kaggle.</p>
+          <p>For this project, I will be examining a database containing complete batting and pitching statistics from 1871 to 2020, plus fielding statistics, standings, team stats, managerial records and post-season data. As I mentioned above, although I have access to data going back to 1871, I will only be using data from 2010 through the 2019 season. I am only using the past ten years worth of data because baseball has shifted in playing style over the past ten years. This is mainly a result of increased use of analytics in baseball and shifting strategies due to this analytical adoption. Looking at stats from the 1950s when players were playing baseball a different style is not as useful when looking to identify regression candidates in 2021. Also, I will be excluding the 2020 season from my analysis as this was a shortened season (an outlier) due to the Covid-19 pandemic and will throw off my models.</p>
           
-          <p><a href='https://www.kaggle.com/c/logical-rythm-2k20-sports-image-classification/data'><b>Link to the dataset</b> </a></p>
+          <p><a href='http://www.seanlahman.com/baseball-archive/statistics/'><b>Link to the dataset</b> </a></p>
    
-          <p>Once my data is collected, cleaned, and formatted correctly for my model, I then scraped images from the Sports Illustrated website for the magazine covers from 2010-2019. I had to manually label each cover for modeling purposes.</p> 
-
-          <p><a href='https://vault.si.com/vault/archives/2010s/2019'><b>Link to where images are hosted that will be scraped</b> </a></p>
+          <p>In addition to the data provided by the dataset, I also had to create a couple new features I felt would be important to increase the accuracy of the model. The first column I had to create was the total fantasy points for that season. I used the standard head to head scoring system from CBS Sports to calculate these values (CBS Sports, n.d.). The next field I created was the rolling three year average of the player’s fantasy points. This gives a better snapshot of how the player typically produces compared to just the past season. I also created an overall total average fantasy points for the player. If the player had a one hit wonder season, these metrics will help the model to better understand and identify a regression candidate. Finally, I had to create a new column called Next_Year_FPTS as the dependent variable. It is the same scoring calculation as above for total fantasy points for the current season. However I had to look at the player’s stats from the next season to calculate this dependent variable that I am trying to predict with my test data.</p>
           
           <h2 class="section-heading">Method</h2>
           
-          <p>For the exploratory data analysis portion of the project, I did not have to perform a lot of cleaning or manipulating on the dataset. There are only two columns in the labels dataset (image name and sport) and the images are all provided in the same size/format. As mentioned above, the only major change I made to the dataset was the addition of the images for american football. Otherwise, the images were in the correct format and did not need to be modified for modeling. I had to change the labels from a string to a numerical representation (categorical). However, that was not too difficult.</p>
-          
-          <p>Once the data was collected, inspected, and perfected, I ran my data through 9 different image recognition algorithms. I chose to run my data through various iterations of a Neural Network (NN) and Convoluted Neural Network (CNN) to see what the differences were and what tuning did to each algorithm’s accuracy. I also ran the data through two sets of optimizers for each model; SGD and Adam. I did not have a lot of experience with NNs and CNNs and wanted to see how each optimizer affected the modeling</p>
+          <p>For the exploratory data analysis portion of the project, I did not have to perform a whole lot of cleaning or manipulating based on the dataset. The dataset was very clean in a csv file. There were only 14 items with missing values in the pitchers data set and none in the batters dataset. Leveraging the Pandas Profiling library, I was able to see a couple of items that may cause issues in my modeling and decide how to fix those issues:</p>
           
           <p>The 9 models I chose to run my data through include:</p>
-          <dl>
-            <dt>Neural Network</dt>
-              <dd>-Simple Neural Network</dd>
-              <dd>-Neural Network with L2 Regularization Penalty</dd>
-              <dd>-Neural Network with L1 Regularization Penalty</dd>
-              <dd>-Neural Network with Simultaneous L1 and L2 Regularization Penalty</dd>
-              <dd>-Neural Network with Dropout Penalty</dd>
-            <dt>Convolutional Neural Network</dt>
-              <dd>-Simple Convolutional Neural Network</dd>
-              <dd>-Convolutional Neural Network with Dropout Penalty</dd>
-              <dd>-Convolutional Neural Network with Data Augmentation and Dropout Penalty</dd>
-            <dt>Convolutional Neural Network using a Pre-Trained Covnet</dt>
-              <dd>-Pre-Trained Covnet VGG-16</dd>
-          </dl>
+         
+          <ul>
+            <li>There were 14 players from 2007 - 2019 that had an ERA as N/A. This is because the pitcher never successfully got a player out. ERA is calculated the total runs given up by the amount of outs a pitcher records. Since these players never recorded an out, the ERA could not be calculated. I dropped these 14 players from my analysis as they were not a significant percent of the population (0.13%) and it is a rare occurrence. I did not want to change this value to 0 because an ERA of 0 is very good and these players did the opposite of very good.</li>
+            <li>Due to trades occurring mid-season, a player could show up twice in a given year due to them changing teams/leagues/etc. I wanted to show the total points for this player for the entire year instead of showing total points on one team and total points on another team in one year. I merged these players into one row using a groupby function and then calculated their total fantasy points.</li>
+            <li>I kept the pitcher and batter datasets separate because they have different metrics and felt combining them would clutter/overcomplicate the model.</li>
+          </ul>
               
-          <p>As this is a single-label, multiclass classification problem, I will be using the loss (the ROC curve) and accuracy of the model to validate its ability to correctly classify the images. For my modeling, I split my data into a test and train sets. This allowed me to tune my model and test it against independent data to get an accurate idea of how the models are working.</p>
+          <p>It was reassuring to see that a lot of the variables had a high correlation to the target variable (next_seasons_fpts) and I did not feel the need to drop any of the metrics. I did not feel the model would be cluttered and there would not be too many unnecessary variables.</p>
         
            <a href="#">
-            <img class="img-fluid" src="img/adam_results.png" alt="">
+            <img class="img-fluid" src="img/baseball_corr.png" alt="">
           </a>
-          <span class="caption text-muted">Accuracy and ROC curve for Adam VGG-16 modeling results</span>
+          <span class="caption text-muted">Correlation results for both pitchers and batters</span>
+          
+          <p>Once the data was collected, inspected, and perfected, I ran my data through seven different regression algorithms to predict MLB players expected fantasy points for the upcoming season. I chose to use regression algorithms to solve this problem because this is a supervised machine learning problem (I know the values of the output and can compare the model against the actual values) and I wanted to predict a continuous variable based on the data fed into my model. The seven models I chose to run my data through include:</p>
+           
+          <ul>
+            <li>Linear Regression</li>
+            <li>Decision Tree</li>
+            <li>Random Forest</li>
+            <li>Naive Bayes</li>
+            <li>K-Nearest Neighbor</li>
+            <li>Lasso Regression</li>
+            <li>Ridge Regression</li>
+          </ul>
+          
+          <p></p>
           
           <h2 class="section-heading">Results</h2>
           
