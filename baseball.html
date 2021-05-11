@@ -105,8 +105,7 @@
           <h2 class="section-heading">Method</h2>
           
           <p>For the exploratory data analysis portion of the project, I did not have to perform a whole lot of cleaning or manipulating based on the dataset. The dataset was very clean in a csv file. There were only 14 items with missing values in the pitchers data set and none in the batters dataset. Leveraging the Pandas Profiling library, I was able to see a couple of items that may cause issues in my modeling and decide how to fix those issues:</p>
-          
-          <p>The 9 models I chose to run my data through include:</p>
+
          
           <ul>
             <li>There were 14 players from 2007 - 2019 that had an ERA as N/A. This is because the pitcher never successfully got a player out. ERA is calculated the total runs given up by the amount of outs a pitcher records. Since these players never recorded an out, the ERA could not be calculated. I dropped these 14 players from my analysis as they were not a significant percent of the population (0.13%) and it is a rare occurrence. I did not want to change this value to 0 because an ERA of 0 is very good and these players did the opposite of very good.</li>
@@ -133,34 +132,35 @@
             <li>Ridge Regression</li>
           </ul>
           
-          <p></p>
+          <p>For my modeling, I split my data into a test and train sets. This allowed me to tune my model and test it against independent data to get an accurate idea of how the models are working. I will also exclude 2019 data from the modeling datasets as we do not have a Next_Year_FPTS for this data. This is the data I will be feeding into my model after the modeling portion is complete for production use.</p>
+          
+          <p>Once I split my data into a testing and training set, I one hot encoded categorical variables to ensure my categorical variables would be able to be used in my regression modeling, I performed multiple feature reduction strategies including Principal Component Analysis (PCA) and Thresholding Numerical Feature Variance. For PCA, first I standardized the features so that they have the properties of a standard normal distribution with a mean of zero and a standard deviation of one. I then created the PCA with the n_components to 99% so that the variance of the original features would be retained. Thresholding Numerical Feature Variance removed the features with a low variance, i.e. likely containing little information and thus causing unwanted noise in your modeling. I created a variance threshold of 0.5. The variance threshold calculates the variance for each feature, and drops any feature that does not have a threshold greater than 0.5.</p>
           
           <h2 class="section-heading">Results</h2>
           
-          <p>For my modeling, I first ran each optimizer through a 5 epoch cycle of various learning rates to determine the best learning rate for each optimizer. Then I ran each model through both optimizers (SGD and Adam) at the best performing learning rate. I ran each model through a training session and determined the best epoch for running the test data through the model. Too many epochs, and I would be overfitting the data. Too few epochs, and I would not have an accurate enough model. You can see the Python code for all of these models in my GitHub Repository. After my extensive modeling through all 9 models for each optimizer, below are the results for each model.</p>
+          <p>I ran the batter and pitcher data sets through separate models to avoid overcomplicating the model with unnecessary statistics for the batter/pitcher. To determine what model is the best for predicting future player stats, I then compared the R2 and mean average error (MAE) of each model. To calculate this value, I ran the data through a 5 fold cross validated pipeline and took the mean of those five scores to calculate the final R2 and MAE of each model. In the modeling, I used all of the available, relevant statistics to predict what the next season’s fantasy points will be.</p>
           
           <a href="#">
-            <img class="img-fluid" src="img/image_model_results.png" alt="">
+            <img class="img-fluid" src="img/baseball_model_results.png" alt="">
           </a>
-          <span class="caption text-muted">Results from the 9 models for both SGD and Adam optimizers</span>
+          <span class="caption text-muted">Top 6 model results from the Batter and Pitcher models</span>
           
-          <p>As expected, the modeling leveraging the pre-trained VGG-16 covnet performed the best. I was excited to see an accuracy of 62% as when I started out with the simple NN, I was getting accuracy levels in the teens and low 20s. I felt confident that my model was sufficiently tuned and ready to run the Sports Illustrated covers through. Once I transformed the Sports Illustrated covers to an array appropriate for modeling, I ran the data through the VGG-16 Pretrained Covnet with Adam as an optimizer. The model came back lower than I expected with an accuracy rate of 28% and a loss of about 3. The low loss number was reassuring. However, for this model to be used in a real world setting, I would like to see the accuracy much higher than 28%.</p>
+          <p>As you can see from the above modeling, the Lasso Regression model with all the original features performed best on both the pitcher and batter datasets. The R2 score was very similar for the Naive Bayes model and the Lasso Regression model. However, due to a lower MSE for the Lasso Regression model, I chose this as the model to move forward with. An R2 score of 0.76 for batters and 0.65 for pitchers indicates the model is a strong predictor of next year's fantasy points based on the independent data that was fed into the model. </p>
           
-          <blockquote class = "blockquote">VGG16 is a convolution neural net (CNN ) architecture which was used to win ILSVR (Imagenet) competition in 2014. It is considered to be one of the excellent vision model architectures till date (Thakur, 2020)</blockquote>
+          <p>Using the Lasso Regression model, I ran the 2019 dataset through the model to determine the upcoming 2021 projected fantasy points for a player. I then wrote a Python script that compared the player’s points to their previous season’s points to determine if the player is a regression candidate or not for the upcoming season. If their expected points decrease by 10% compared to the previous season, then I will categorize them as a regression candidate.</p>
+          
           
           <h2 class="section-heading">Conclusion</h2>
           
-          <p>In future iterations of this project, I would like to increase the accuracy of the model. This could be done in a variety of different ways in the modeling process. I could also look at isolating the main image and removing any additional details on the cover image that cause unwanted noise for my model. An accuracy of 28% is not as high as I would have hoped for in the beginning of this project. However, I can say that my hypothesis was correct. I was able to create a model that can accurately classify a sports image based on the details and context of the picture. Image recognition will only continue to grow with the increasing power of cell phone cameras as well as the continued adoption of smart cameras like Nest and Ring.</p>
-          
-          <blockquote class = "blockquote">The advent of digital cameras, particularly cameras built into smartphones, has led to an exponential growth in the volume of digital content in the form of images and videos. A vast amount of visual and digital data is being captured and shared through several applications, websites, social networks, and other digital channels. Several businesses have leveraged this online content to deliver better and smarter services to their customers, with the use of digital image processing. For instance, in October 2019, SnapPay Inc., a U.S. based payment platform provider, launched facial recognition payment technology in the North America region. By using this technology in its payment solution, the company has aimed at allowing its customers a new level of convenience for payments at retail outlets (Grand View Research, 2020).</blockquote>
-          
-          <p>With the fast paced growth of image collecting technology, the amount of image data that can be collected will increase exponentially. The images collected will only continue to be clearer and image recognition will be a powerful tool used in various places like grocery stores, airports, sports areas. You name it, there is most likely a camera present capturing our every move. Having all of this data to simplify and improve our lives will be a major incentive for companies in the future.</p>
+          <p>Overall, I felt my project went well and my hypothesis was proven correct. Based on a high R2 score, I can confidently say my hypothesis was correct and that we can predict a player’s projected fantasy points for the upcoming season, on average, within 131 points for a batter and 226 points for a pitcher. Due to this ability, we can also successfully identify potential regression candidates for the upcoming season by comparing their projected points for the upcoming season to the previous season’s points.</p>
+           
+          <p>Fantasy baseball has been a hobby of mine going back to the late nineties. I credit it for sparking my interest in data and analytics as a teenager. Little did I know when my dad took me to my first fantasy draft that I would be hooked and dig through data for advantages throughout my life. Using data science to predict future fantasy sports metrics is a fun way to use data science and analytics and I credit it for getting me interested in this career path.</p>
          
           <a href="#">
-            <img class="img-fluid" src="img/image_recog_sports.png" alt="">
+            <img class="img-fluid" src="img/baseball_final.jpg" alt="">
           </a>
           
-          <h2 class="section-heading">Citations</h2>
+          <!--- <h2 class="section-heading">Citations</h2>
           
           <p>Bennett, A. J. (2020, May 2). List of Top 10 Best Sports Magazines of All Time. Retrieved April 16, 2021, from <a href>https://posora.com/best-sports-magazines/</a><p>
 
@@ -169,7 +169,7 @@
           <p>mediumnok. (2021, April 19). ADAM in 2019 — What’s the next ADAM optimizer - Towards Data Science. Medium. <a href>https://towardsdatascience.com/adam-in-2019-whats-the-next-adam-optimizer-e9b4a924b34f#:%7E:text=Adam%20is%20great%2C%20it’s%20much,2019%20were%20still%20using%20SGD</a></p>
         
           <p>Thakur, R. (2020, November 24). Step by step VGG16 implementation in Keras for beginners. Medium. <a href>https://towardsdatascience.com/step-by-step-vgg16-implementation-in-keras-for-beginners-a833c686ae6c</a></p>
-         
+         --->
         </div>
       </div>
     </div>
