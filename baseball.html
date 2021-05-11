@@ -130,20 +130,15 @@
           <p>For my modeling, I split my data into a test and train sets. This allowed me to tune my model and test it against independent data to get an accurate idea of how the models are working. I will also exclude 2019 data from the modeling datasets as we do not have a Next_Year_FPTS for this data. This is the data I will be feeding into my model after the modeling portion is complete for production use.</p>
           
           <p>Once I split my data into a testing and training set, I one hot encoded categorical variables to ensure my categorical variables would be able to be used in my regression modeling, I performed multiple feature reduction strategies including Principal Component Analysis (PCA) and Thresholding Numerical Feature Variance. For PCA, first I standardized the features so that they have the properties of a standard normal distribution with a mean of zero and a standard deviation of one. I then created the PCA with the n_components to 99% so that the variance of the original features would be retained. Thresholding Numerical Feature Variance removed the features with a low variance, i.e. likely containing little information and thus causing unwanted noise in your modeling. I created a variance threshold of 0.5. The variance threshold calculates the variance for each feature, and drops any feature that does not have a threshold greater than 0.5.</p>
-          
-          <a href="#">
-            <img class="img-fluid" src="img/pitchers.png" alt="">
-          </a>
-          <span class="caption text-muted">Results from the pitcher modeling</span>
-          
-          <h2 class="section-heading">Results</h2>
-          
-          <p>I ran the batter and pitcher data sets through separate models to avoid overcomplicating the model with unnecessary statistics for the batter/pitcher. To determine what model is the best for predicting future player stats, I then compared the R2 and mean average error (MAE) of each model. To calculate this value, I ran the data through a 5 fold cross validated pipeline and took the mean of those five scores to calculate the final R2 and MAE of each model. In the modeling, I used all of the available, relevant statistics to predict what the next season’s fantasy points will be.</p>
-          
+                    
           <a href="#">
             <img class="img-fluid" src="img/baseball_model_results.png" alt="">
           </a>
           <span class="caption text-muted">Top 6 model results from the Batter and Pitcher models</span>
+          
+          <h2 class="section-heading">Results</h2>
+          
+          <p>I ran the batter and pitcher data sets through separate models to avoid overcomplicating the model with unnecessary statistics for the batter/pitcher. To determine what model is the best for predicting future player stats, I then compared the R2 and mean average error (MAE) of each model. To calculate this value, I ran the data through a 5 fold cross validated pipeline and took the mean of those five scores to calculate the final R2 and MAE of each model. In the modeling, I used all of the available, relevant statistics to predict what the next season’s fantasy points will be.</p>
           
           <p>As you can see from the above modeling, the Lasso Regression model with all the original features performed best on both the pitcher and batter datasets. The R2 score was very similar for the Naive Bayes model and the Lasso Regression model. However, due to a lower MSE for the Lasso Regression model, I chose this as the model to move forward with. An R2 score of 0.76 for batters and 0.65 for pitchers indicates the model is a strong predictor of next year's fantasy points based on the independent data that was fed into the model. </p>
           
