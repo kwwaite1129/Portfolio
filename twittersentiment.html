@@ -78,107 +78,49 @@
            <h2 class="section-heading">Overview</h2>
           <p>Scanning text for the overall sentiment, or tone, of the writting is a prominent use case in the world of text analysis and machine learning. Being able to take a quick pulse on social media of how your customer base feels about a topic or your company is easier than hiring a PR compnay to perform a survey analysis. Although not as trustworthy (Twitter is not the best place to go if you are looking for words of wisdom or encouragement), it is an effective tool for quickly idenitfying how the world feels about a topic.</p>
           
-          <blockquote class = "blockquote">Just remember, everyone on ESPN & FS1 who were praising #CamNewton this morning, are the same people who were defending Kaepernick being ranked higher than him in Madden</blockquote>
-          <span class="caption text-muted">@lavalleech 6:50 PM · Sep 21, 2020</span>
-          
-          <p><p/>
-          <p>Using an image recognition model, the data entry or data governance teams at Sports Illustrated would be able to run these covers through the image recognition model and classify each cover to the sport they belong to. This model, if calibrated correctly, could also perform this classification activity with their entire image library. Instead of having an employee manually go through all of the magazine cover archives and label each magazine cover. The model would be able to do this in a matter of minutes and save valuable company resources.</p>
-          
           <a href="#">
-            <img class="img-fluid" src="img/si_covers.png" alt="">
+            <img class="img-fluid" src="img/tweet_intro.png" alt="">
           </a>
-          <span class="caption text-muted">Sample Sports Illustrated Covers I attempted to classify.</span>
-          
-          <h2 class="section-heading">Hypothesis</h2>
-
-          <p>My hypothesis is that I can create a model that will accurately label each Sports Illustrated cover based on the sports portrayed on the main image. Classifying images is no easy task for a machine. The machine cannot differentiate one image from another until it is trained on the differences between the images. I believe with the sports image dataset I am using (more on that below in the data section), I can create an accurate model that will correctly classify each sports image. It would be extremely time consuming to have a person manually go through each Sports Illustrated cover and label what sport is represented with the main cover image. Having this historical data would allow Sports Illustrated to perform various analysis including:</p>
-
-          <ul>
-            <li>What sports sell the most issues?</li>
-            <li>Are there any trends for sports based on the season/time of the year?</li>
-            <li>What sort of representation is there on the covers?</li>
-            <li>Is Sports Illustrated over representing or under representing any societal, cultural, or sport groups?</li>
-            <li>If a group is underrepresented, how can we become more inclusive while also increasing sales?</li>
-          </ul>
-          
+          <span class="caption text-muted">Sample in game tweet.</span>
+                    
           <h2 class="section-heading">The Data</h2>
           
           <a href="#">
-            <img class="img-fluid" src="img/sport_image_dataset.png" alt="">
+            <img class="img-fluid" src="img/wordcloud.png" alt="">
           </a>
-          <span class="caption text-muted">Sample images from the datatset I will be using to train my model.</span>
+          <span class="caption text-muted">Wordcloud showing most popular words from the tweets I collected</span>
 
-          <p>For this project, I will be using a sports image dataset from Kaggle that was created in December 2020. The training dataset contains over 11,000 images of 22 different sports and their labels. This dataset will be excellent for building my initial model because it contains images from a variety of sports. One major issue arose with the dataset once I began my exploratory data analysis. The dataset is robust and contains almost every major sport. However, the dataset did not contain any images for american football. This sport may not be popular world wide, however, for my project, it is necessary to include. The overwhelming majority of Sports Illustrated covers contain images from american football. Therefore, I had to create a python function that scraped over 300 images from Google image search that included american football. These images had to be appended to the original dataset I downloaded from Kaggle.</p>
-          
-          <p><a href='https://www.kaggle.com/c/logical-rythm-2k20-sports-image-classification/data'><b>Link to the dataset</b> </a></p>
+          <p>Using Twitters' devleoper API, I collected tweets with the word Cam Newton contained within it from September 20th, 2020 (pregame) until September 21st, 2020(postgame). The Twitter API search pulled back almost 600 Tweets from all around the world throughout the entirety of the game and postgame. I then categorized the Tweets based on their day and time either as Pre-Game(Sunday before 8:30 PM EST), In-Game(Sunday from 8:30 PM EST - 11:59 PM EST) amd Post-Game (Any Tweet on Monday 9/21). </p>
+                    
+          <a href="#">
+            <img class="img-fluid" src="img/tweet_data.png" alt="">
+          </a>
    
-          <p>Once my data is collected, cleaned, and formatted correctly for my model, I then scraped images from the Sports Illustrated website for the magazine covers from 2010-2019. I had to manually label each cover for modeling purposes.</p> 
-
-          <p><a href='https://vault.si.com/vault/archives/2010s/2019'><b>Link to where images are hosted that will be scraped</b> </a></p>
-          
           <h2 class="section-heading">Method</h2>
           
-          <p>For the exploratory data analysis portion of the project, I did not have to perform a lot of cleaning or manipulating on the dataset. There are only two columns in the labels dataset (image name and sport) and the images are all provided in the same size/format. As mentioned above, the only major change I made to the dataset was the addition of the images for american football. Otherwise, the images were in the correct format and did not need to be modified for modeling. I had to change the labels from a string to a numerical representation (categorical). However, that was not too difficult.</p>
+          <p>Once the data was collected and cleaned, I created two Python functions to categorize the data. First, I created a polarity score function to determine the sentiment of the tweet. The polarity score ranges from -1 to 1 and is applied to each word within a string. Positively connoted words receive a score of 1 while negative words are marked with -1. The average of these scores within a string produces the final polarity score.</p>
           
-          <p>Once the data was collected, inspected, and perfected, I ran my data through 9 different image recognition algorithms. I chose to run my data through various iterations of a Neural Network (NN) and Convoluted Neural Network (CNN) to see what the differences were and what tuning did to each algorithm’s accuracy. I also ran the data through two sets of optimizers for each model; SGD and Adam. I did not have a lot of experience with NNs and CNNs and wanted to see how each optimizer affected the modeling</p>
+          <p>After each tweet was assigned a polarity score, I created a Python function to determine if the Tweet should be classified as either, positive, negative, or neutral. To create the scale, I derived one standard deviation from the distribution of the data. This came out to 0.27. So for a positive Tweet, it should have a polarity score greater than 0.30. A negative Tweet would have a polarity score less than -0.30. A neutral tweet would be between those two ranges, -0.30 and 0.30.</p>
           
-          <p>The 9 models I chose to run my data through include:</p>
-          <dl>
-            <dt>Neural Network</dt>
-              <dd>-Simple Neural Network</dd>
-              <dd>-Neural Network with L2 Regularization Penalty</dd>
-              <dd>-Neural Network with L1 Regularization Penalty</dd>
-              <dd>-Neural Network with Simultaneous L1 and L2 Regularization Penalty</dd>
-              <dd>-Neural Network with Dropout Penalty</dd>
-            <dt>Convolutional Neural Network</dt>
-              <dd>-Simple Convolutional Neural Network</dd>
-              <dd>-Convolutional Neural Network with Dropout Penalty</dd>
-              <dd>-Convolutional Neural Network with Data Augmentation and Dropout Penalty</dd>
-            <dt>Convolutional Neural Network using a Pre-Trained Covnet</dt>
-              <dd>-Pre-Trained Covnet VGG-16</dd>
-          </dl>
-              
-          <p>As this is a single-label, multiclass classification problem, I will be using the loss (the ROC curve) and accuracy of the model to validate its ability to correctly classify the images. For my modeling, I split my data into a test and train sets. This allowed me to tune my model and test it against independent data to get an accurate idea of how the models are working.</p>
-        
-           <a href="#">
-            <img class="img-fluid" src="img/adam_results.png" alt="">
+          <a href="#">
+            <img class="img-fluid" src="img/sentiment_counts.png" alt="">
           </a>
-          <span class="caption text-muted">Accuracy and ROC curve for Adam VGG-16 modeling results</span>
           
           <h2 class="section-heading">Results</h2>
           
-          <p>For my modeling, I first ran each optimizer through a 5 epoch cycle of various learning rates to determine the best learning rate for each optimizer. Then I ran each model through both optimizers (SGD and Adam) at the best performing learning rate. I ran each model through a training session and determined the best epoch for running the test data through the model. Too many epochs, and I would be overfitting the data. Too few epochs, and I would not have an accurate enough model. You can see the Python code for all of these models in my GitHub Repository. After my extensive modeling through all 9 models for each optimizer, below are the results for each model.</p>
+          <p>Wikipedia defines sentiment analysis as "the use of natural language processing, text analysis...to systematically identify, extract, quantify, and study affective states and subjective information. Sentiment analysis is widely applied to voice of the customer materials such as reviews and survey responses, online and social media, and healthcare materials for applications that range from marketing to customer service to clinical medicine". Using sentiment analysis a company can get a feel for how their new product being recieevd by the public or understand how a recent news story is affecting their image overall. It allows for compnaies to quickly react, either positively(continue to promote the positive news) or negatively(stop the bleeding before it gets out of control), to the public's perception of them.</p>
           
           <a href="#">
-            <img class="img-fluid" src="img/image_model_results.png" alt="">
+            <img class="img-fluid" src="img/sentiment_percents.png" alt="">
           </a>
-          <span class="caption text-muted">Results from the 9 models for both SGD and Adam optimizers</span>
-          
-          <p>As expected, the modeling leveraging the pre-trained VGG-16 covnet performed the best. I was excited to see an accuracy of 62% as when I started out with the simple NN, I was getting accuracy levels in the teens and low 20s. I felt confident that my model was sufficiently tuned and ready to run the Sports Illustrated covers through. Once I transformed the Sports Illustrated covers to an array appropriate for modeling, I ran the data through the VGG-16 Pretrained Covnet with Adam as an optimizer. The model came back lower than I expected with an accuracy rate of 28% and a loss of about 3. The low loss number was reassuring. However, for this model to be used in a real world setting, I would like to see the accuracy much higher than 28%.</p>
-          
-          <blockquote class = "blockquote">VGG16 is a convolution neural net (CNN ) architecture which was used to win ILSVR (Imagenet) competition in 2014. It is considered to be one of the excellent vision model architectures till date (Thakur, 2020)</blockquote>
+          <span class="caption text-muted">Tweet sentiment trending pre-in-post game</span>
           
           <h2 class="section-heading">Conclusion</h2>
           
-          <p>In future iterations of this project, I would like to increase the accuracy of the model. This could be done in a variety of different ways in the modeling process. I could also look at isolating the main image and removing any additional details on the cover image that cause unwanted noise for my model. An accuracy of 28% is not as high as I would have hoped for in the beginning of this project. However, I can say that my hypothesis was correct. I was able to create a model that can accurately classify a sports image based on the details and context of the picture. Image recognition will only continue to grow with the increasing power of cell phone cameras as well as the continued adoption of smart cameras like Nest and Ring.</p>
-          
-          <blockquote class = "blockquote">The advent of digital cameras, particularly cameras built into smartphones, has led to an exponential growth in the volume of digital content in the form of images and videos. A vast amount of visual and digital data is being captured and shared through several applications, websites, social networks, and other digital channels. Several businesses have leveraged this online content to deliver better and smarter services to their customers, with the use of digital image processing. For instance, in October 2019, SnapPay Inc., a U.S. based payment platform provider, launched facial recognition payment technology in the North America region. By using this technology in its payment solution, the company has aimed at allowing its customers a new level of convenience for payments at retail outlets (Grand View Research, 2020).</blockquote>
-          
-          <p>With the fast paced growth of image collecting technology, the amount of image data that can be collected will increase exponentially. The images collected will only continue to be clearer and image recognition will be a powerful tool used in various places like grocery stores, airports, sports areas. You name it, there is most likely a camera present capturing our every move. Having all of this data to simplify and improve our lives will be a major incentive for companies in the future.</p>
-         
           <a href="#">
-            <img class="img-fluid" src="img/image_recog_sports.png" alt="">
+            <img class="img-fluid" src="img/cam.png" alt="">
           </a>
           
-          <h2 class="section-heading">Citations</h2>
-          
-          <p>Bennett, A. J. (2020, May 2). List of Top 10 Best Sports Magazines of All Time. Retrieved April 16, 2021, from <a href>https://posora.com/best-sports-magazines/</a><p>
-
-          <p>Grand View Research. (2020, March). Image Recognition Market Size Worth $109.4 Billion By 2027. Retrieved April 16, 2021, from <a href>https://www.grandviewresearch.com/press-release/global-image-recognition-market</a></p>
-        
-          <p>mediumnok. (2021, April 19). ADAM in 2019 — What’s the next ADAM optimizer - Towards Data Science. Medium. <a href>https://towardsdatascience.com/adam-in-2019-whats-the-next-adam-optimizer-e9b4a924b34f#:%7E:text=Adam%20is%20great%2C%20it’s%20much,2019%20were%20still%20using%20SGD</a></p>
-        
-          <p>Thakur, R. (2020, November 24). Step by step VGG16 implementation in Keras for beginners. Medium. <a href>https://towardsdatascience.com/step-by-step-vgg16-implementation-in-keras-for-beginners-a833c686ae6c</a></p>
          
         </div>
       </div>
