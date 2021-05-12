@@ -87,13 +87,7 @@
           <p>Our thought is to leverage big data from a big corporation like the NCAA. The question we want to answer is, “Can we predict how many wins a school will have in a given season?.” If we have access to some data about the team (numerical values like offensive and defensive efficiency, wins in the previous year(s), as well as factor data like the conference, even team name) can we build a model that can accurately predict how well the team will do? Can we predict a team’s performance in the future season(s)? As was stated earlier, each year there are over 350 schools in 32 conferences that we are able to look at.</p>
           
           <p>Human behavior is one of the most difficult to predict due to the inconsistencies of people and their actions. College basketball is a sport that is performed by humans (and refereed by humans), which leads to erratic outlier behaviors that sometimes stun fans and analysts alike. Is the data useful in making predictions, or are sports truly unpredictable? We expect that throughout our analysis, we will be able to uncover multiple predictors that allow us to accurately determine the number of wins a college basketball team will have. Predictive analytics is used extensively in basketball by teams to try to increase their chances of winning. Therefore, we expect to uncover multiple variables with strong relationships that aid us in predicting the number of wins for a team.</p>
-          
-          <!--- <a href="#">
-            <img class="img-fluid" src="img/si_covers.png" alt="">
-          </a>
-          <span class="caption text-muted">Sample Sports Illustrated Covers I attempted to classify.</span> --->
-          
-          
+     
           <h2 class="section-heading">The Data</h2>
           
           <a href="#">
@@ -114,7 +108,7 @@
           <p>We begin our analysis by looking at some initial plots of our data to identify “relevant” data points. We will leverage these relevant data points in an attempt to build an accurate prediction model for the number of wins a team will have in a given season. We thought it might be a good idea to take a look at the distribution of wins. To do this, we created a histogram of the wins column:</p>
           
           <a href="#">
-            <img class="img-fluid" src="img/cbball_wins_dist.png" alt="">
+            <img class="mx-auto d-block" src="img/cbball_wins_dist.png" alt="">
           </a>
           
           <p>This graph shows us that we have quite a daunting task ahead of us. There are teams that have had only one win, and teams that have had almost 40 wins. The good news is that the data seems fairly normal and symmetric. After running some tests on the data we determined the data has a very slight positive skew. However, the skewness of the data is only 0.20 and not significant enough to require transformations on the data.</p>
@@ -122,7 +116,7 @@
           <p>One caveat to note, we excluded the 2020 season from our analysis. This season was cut short due to the Covide-19 pandemic and we did not have an NCAA tournament or final team rankings. This incomplete season is an outlier and should be removed from the data set to ensure we are not feeding our model bad data. As they say, garbage in, garbage out.</p>
         
            <a href="#">
-            <img class="img-fluid" src="img/cbball_boxplot.png" alt="">
+            <img class="mx-auto d-block" src="img/cbball_boxplot.png" alt="">
           </a>
 
           <p>After ensuring the data is normal, the next step we took in the exploratory data analysis phase of this project was outlier analysis. As you can see in the boxplots above, there were multiple data points that could be considered outliers. However, after examining the historical win totals, we verified these “outliers” were accurate and should not be excluded from our analysis. These outlier teams were the top teams in the respective seasons and had above average win totals for those seasons. In actuality, 2016 could be considered an outlier as there was no top team that stood out from the rest in terms of win totals. This must have made gambling on the 2016 NCAA tournament quite difficult for college basketball fans.</p>
@@ -164,7 +158,7 @@
           <p>After running many tests to get the highest possible accuracy, we were able to achieve an accuracy of 32.39% using Gradient Regression on a sub-dataset with 24 fields. Also, we were able to achieve high accuracies within +/- 1 and 2 games as seen in the image below.</p>
           
           <a href="#">
-            <img class="img-fluid" src="img/cbball_results4.png" alt="">
+            <img class="mx-auto d-block" src="img/cbball_results4.png" alt="">
           </a>
           
           <h2 class="section-heading">Conclusion</h2>
