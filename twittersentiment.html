@@ -85,14 +85,14 @@
           <h2 class="section-heading">The Data</h2>
           
           <a href="#">
-            <img class="img-fluid" src="img/wordcloud.png" alt="">
+            <img class="mx-auto d-block" src="img/wordcloud.png" alt="">
           </a>
           <span class="caption text-muted">Wordcloud showing most popular words from the tweets I collected</span>
 
           <p>Using Twitters' devleoper API, I collected tweets with the phrase Cam Newton contained within it from September 20th, 2020 (pregame) until September 21st, 2020 (postgame). The Twitter API search pulled back almost 600 Tweets from all around the world throughout the entirety of the game and postgame. I then categorized the Tweets based on their day and time either as Pre-Game (Sunday before 8:30 PM EST), In-Game (Sunday from 8:30 PM EST - 11:59 PM EST) amd Post-Game (Any Tweet on Monday 9/21). </p>
                     
           <a href="#">
-            <img class="img-fluid" src="img/tweet_data.png" alt="">
+            <img class="mx-auto d-block" src="img/tweet_data.png" alt="">
           </a>
    
           <h2 class="section-heading">Method</h2>
@@ -102,7 +102,7 @@
           <p>After each tweet was assigned a polarity score, I created a Python function to determine if the Tweet should be classified as either positive, negative, or neutral. To create the scale, I derived one standard deviation from the distribution of the data. This came out to 0.27. So for a positive Tweet, it should have a polarity score greater than 0.30. A negative Tweet would have a polarity score less than -0.30. A neutral tweet would be between those two ranges; -0.30 and 0.30.</p>
           
           <a href="#">
-            <img class="img-fluid" src="img/sentiment_counts.png" alt="">
+            <img class="mx-auto d-block" src="img/sentiment_counts.png" alt="">
           </a>
           <span class="caption text-muted">Tweet counts by polarity sentiment category</span>
           
@@ -111,7 +111,7 @@
           <p> As you can see above, the overwhelming majority of Tweets were classified as neutral. I find that a little strange based on the typical hot take nature of Twitter. However, doing a quick spot check of the Tweets, the model holds up. I could potentially shrink the range to allow for more negative and positive Tweets. However, I think my decision to go out one standard deviation is solid. Thankfully, for Cam Newton's sake, the positive tweets saw the largest shift from pre to post game. Negative Tweets remained relatively flat from about 14% pre-game, to 16% post-game. Positive Tweets went up about 15% from 13% pre-game, to 38% post-game. I believe this is mainly due to Cam almost leading the Patriots to victory over a far superior team that most experts believed would win handily.</p> 
           
           <a href="#">
-            <img class="img-fluid" src="img/sentiment_percents.png" alt="">
+            <img class="mx-auto d-block" src="img/sentiment_percents.png" alt="">
           </a>
           <span class="caption text-muted">Tweet sentiment trending pre-in-post game</span>
           
