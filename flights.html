@@ -63,7 +63,7 @@
             <h2 class="subheading">Leveraging historical flight data, proved flying is safer than it has ever been in human history</h2>
             <span class="meta">Project Completed November 2020</span>
             <p></p>
-            <pan class="meta"><a href='https://github.com/kwwaite1129/Example-Project-Work/tree/master/Sports%20Image%20Classifier'><b><u>GitHub Repository</b></u></a></span>
+            <pan class="meta"><a href='https://github.com/kwwaite1129/Example-Project-Work/tree/master/Flight%20Safety%20Analysis'><b><u>GitHub Repository</b></u></a></span>
           </div>
         </div>
       </div>
@@ -78,109 +78,44 @@
           
           <img class="img-fluid" src="img/flight_graphic.png" alt="">
           
-           <h2 class="section-heading">Overview</h2>
-          <p>Image recognition is a powerful tool that can be used in a variety of use cases throughout any domain. Image recognition is quickly becoming one of the most popular projects for machine learning to automate previously manual tasks performed by a human. In order for an image recognition model to be successful, it must be able to accurately label and categorize images based on the dataset it was trained on. For my second project this semester, I will be taking the Sports Illustrated covers for the past ten years (2010-2019) and running them through a model I created to identify what sport is on the cover of the magazine. </p>
+           <h2 class="section-heading">Flight Safety Analysis</h2>
+          <p>Although there have been recent unfortunate airline crashes and the media’s promotion of statistics stating air travel is no longer a safe way to travel, it in fact has never been safer to travel by airplane. Airline travel has never been safer and the time saving/safety increase for travelers compared to automobile travel is a no-brainer. Average airline incidents per year is down by almost 50% compared to the previous 15 years. Average airline fatalities per airline incident has also decreased by almost 50% compared to the previous 15 years. From 1985 - 1999, the average fatalities per airline incident were about 0.30 people. Consequently, from 2000-2014, that number has dropped significantly to 0.19 average fatalities per airline incident. Although we would like to see that number drop to zero, the significant decrease over the past 15 years is encouraging nonetheless. US airline incidents follow a similar path as the overall airline industry when it comes to average incidents per 100 million miles flown. This rate has continued to steadily decrease over the past 14years and is at its lowest level since 2014. There was a slight uptick in incident rate in 2014, however, this rate has continued to decrease since then.</p>
           
-          <blockquote class = "blockquote">The global image recognition market size is expected to reach USD 109.4 billion by 2027, according to a new report by Grand View Research, Inc. The market is anticipated to expand at a CAGR[Compound Annual Growth Rate] of 18.8% from 2020 to 2027, (Grand View Research, 2020).</blockquote>
+          <p>The media has also suggested it is safer to travel by automobile versus airplane. Based on our analysis, we believe this to be a false narrative. From 2000 to 2014, a person was 43 times more likely to be involved in an automobile accident than an airplane incident. From 2000 to 2014, there were 1.31 incidents per 100 million miles driven in the United States. During that same time frame, there were 0.03 airline incidents per 100 million miles flown. Not only does air travel reduce the amount of time a person must take to travel, but it also reduces the chance of a person being involved in an accident.</p>
           
-          <p>Using an image recognition model, the data entry or data governance teams at Sports Illustrated would be able to run these covers through the image recognition model and classify each cover to the sport they belong to. This model, if calibrated correctly, could also perform this classification activity with their entire image library. Instead of having an employee manually go through all of the magazine cover archives and label each magazine cover. The model would be able to do this in a matter of minutes and save valuable company resources.</p>
+          <p>In addition to safety, we can see that these recent stories have unaffected the airline industry as a whole. Overall revenue for the airline industry has been unaffected and continues to move in a positive direction.nRevenue has increased by almost 20% since 2015 with no sign of slowing down. In that same time period, domestic revenue has increased by 20% and international revenue has increased by 12%. You may think this is due to raising airline prices and fuel prices, however, this is only part of the story. The total passengers and total miles flown for US flights is at an all time high and do not show any signs of decreasing. This indicates there is no raising fear by airline customers of the safety of flying. Also, the customer base is increasing and will continue to rise at a steady peace for the foreseeable future.</p>
           
-          <a href="#">
-            <img class="img-fluid" src="img/si_covers.png" alt="">
-          </a>
-          <span class="caption text-muted">Sample Sports Illustrated Covers I attempted to classify.</span>
-          
-          <h2 class="section-heading">Hypothesis</h2>
-
-          <p>My hypothesis is that I can create a model that will accurately label each Sports Illustrated cover based on the sports portrayed on the main image. Classifying images is no easy task for a machine. The machine cannot differentiate one image from another until it is trained on the differences between the images. I believe with the sports image dataset I am using (more on that below in the data section), I can create an accurate model that will correctly classify each sports image. It would be extremely time consuming to have a person manually go through each Sports Illustrated cover and label what sport is represented with the main cover image. Having this historical data would allow Sports Illustrated to perform various analysis including:</p>
-
-          <ul>
-            <li>What sports sell the most issues?</li>
-            <li>Are there any trends for sports based on the season/time of the year?</li>
-            <li>What sort of representation is there on the covers?</li>
-            <li>Is Sports Illustrated over representing or under representing any societal, cultural, or sport groups?</li>
-            <li>If a group is underrepresented, how can we become more inclusive while also increasing sales?</li>
-          </ul>
-          
+          <p>Overall, we feel that flying by plane has never been safer and the recent media stories regarding this topic is inaccurate. Between the decreasing incident/fatality rates, increasing miles flown and growth in people choosing to fly in the skies, choosing planes over automobiles or other forms of transportation is a no brainer.</p>
+         
           <h2 class="section-heading">The Data</h2>
           
-          <a href="#">
-            <img class="img-fluid" src="img/sport_image_dataset.png" alt="">
-          </a>
-          <span class="caption text-muted">Sample images from the datatset I will be using to train my model.</span>
-
-          <p>For this project, I will be using a sports image dataset from Kaggle that was created in December 2020. The training dataset contains over 11,000 images of 22 different sports and their labels. This dataset will be excellent for building my initial model because it contains images from a variety of sports. One major issue arose with the dataset once I began my exploratory data analysis. The dataset is robust and contains almost every major sport. However, the dataset did not contain any images for american football. This sport may not be popular world wide, however, for my project, it is necessary to include. The overwhelming majority of Sports Illustrated covers contain images from american football. Therefore, I had to create a python function that scraped over 300 images from Google image search that included american football. These images had to be appended to the original dataset I downloaded from Kaggle.</p>
-          
-          <p><a href='https://www.kaggle.com/c/logical-rythm-2k20-sports-image-classification/data'><b>Link to the dataset</b> </a></p>
-   
-          <p>Once my data is collected, cleaned, and formatted correctly for my model, I then scraped images from the Sports Illustrated website for the magazine covers from 2010-2019. I had to manually label each cover for modeling purposes.</p> 
-
-          <p><a href='https://vault.si.com/vault/archives/2010s/2019'><b>Link to where images are hosted that will be scraped</b> </a></p>
-          
-          <h2 class="section-heading">Method</h2>
-          
-          <p>For the exploratory data analysis portion of the project, I did not have to perform a lot of cleaning or manipulating on the dataset. There are only two columns in the labels dataset (image name and sport) and the images are all provided in the same size/format. As mentioned above, the only major change I made to the dataset was the addition of the images for american football. Otherwise, the images were in the correct format and did not need to be modified for modeling. I had to change the labels from a string to a numerical representation (categorical). However, that was not too difficult.</p>
-          
-          <p>Once the data was collected, inspected, and perfected, I ran my data through 9 different image recognition algorithms. I chose to run my data through various iterations of a Neural Network (NN) and Convoluted Neural Network (CNN) to see what the differences were and what tuning did to each algorithm’s accuracy. I also ran the data through two sets of optimizers for each model; SGD and Adam. I did not have a lot of experience with NNs and CNNs and wanted to see how each optimizer affected the modeling</p>
-          
-          <p>The 9 models I chose to run my data through include:</p>
           <dl>
-            <dt>Neural Network</dt>
-              <dd>-Simple Neural Network</dd>
-              <dd>-Neural Network with L2 Regularization Penalty</dd>
-              <dd>-Neural Network with L1 Regularization Penalty</dd>
-              <dd>-Neural Network with Simultaneous L1 and L2 Regularization Penalty</dd>
-              <dd>-Neural Network with Dropout Penalty</dd>
-            <dt>Convolutional Neural Network</dt>
-              <dd>-Simple Convolutional Neural Network</dd>
-              <dd>-Convolutional Neural Network with Dropout Penalty</dd>
-              <dd>-Convolutional Neural Network with Data Augmentation and Dropout Penalty</dd>
-            <dt>Convolutional Neural Network using a Pre-Trained Covnet</dt>
-              <dd>-Pre-Trained Covnet VGG-16</dd>
+            <dt><a href src = 'https://github.com/fivethirtyeight/data/blob/master/airline-safety/airline-safety.csv'>Airline Fatality and Incident Data<a/></dt>
+            <dt><a href src = 'https://www-fars.nhtsa.dot.gov/Main/index.aspx'>Automobile Incident Data<a/></dt>
+            <dt><a href src = 'http://web.mit.edu/airlinedata/www/2019%2012%20Month%20Documents/Traffic%20and%20C apacity/System%20Total/Total%20System%20Revenue%20Passenger%20Miles.htm'>Overall Airline Revenue Data<a/></dt>
+            <dt><a href src = 'http://web.mit.edu/airlinedata/www/2019%2012%20Month%20Documents/Traffic%20and%20C apacity/Domestic/Domestic%20Revenue%20Passenger%20Miles.htm'>Domestic Airline Revenue Data<a/></dt>
+            <dt><a href src = 'http://web.mit.edu/airlinedata/www/2019%2012%20Month%20Documents/Traffic%20and%20C apacity/International/International%20Revenue%20Passenger%20Miles.htm'>International Airline Revenue Data<a/></dt>
+            <dt><a href src = 'https://www.bts.gov/sites/bts.dot.gov/files/table_02_09_121819.xlsx'>US Accident Rate, Fatality Rate and Miles Flown Data<a/></dt>
+            <dt><a href src = 'https://www.bts.dot.gov/annual-passengers-all-us-scheduled-airline-flights-domestic-internation al-and-foreign-airline'>US Passenger Totals Data<a/></dt>
+
           </dl>
               
-          <p>As this is a single-label, multiclass classification problem, I will be using the loss (the ROC curve) and accuracy of the model to validate its ability to correctly classify the images. For my modeling, I split my data into a test and train sets. This allowed me to tune my model and test it against independent data to get an accurate idea of how the models are working.</p>
-        
-           <a href="#">
-            <img class="img-fluid" src="img/adam_results.png" alt="">
-          </a>
-          <span class="caption text-muted">Accuracy and ROC curve for Adam VGG-16 modeling results</span>
+          <img class="img-fluid" src="img/flight_dash.png" alt="">
+            
+          <h2 class="section-heading">The Project</h2>
           
-          <h2 class="section-heading">Results</h2>
+          <p>Key Tasks performed for this project included:</p>
+            
+          <ul>
+            <li>Search the internet for data to support my argument that flying was a safe mode of transportation</li>
+            <li>Collect data from the internet that support this statement. This included downloading csv files, extracting data from APIs, and scraping data from various flight travel datat websites</li>
+            <li>Create an infographic in Photoshop (see image at begining of the page) to present findings</li>
+            <li>Create a PowerPoint presentation to review the findings to "executive leadership"</li>
+            <li>Create Tableau Dashboard for interactive flight safety metrics</li>
+          </ul>
           
-          <p>For my modeling, I first ran each optimizer through a 5 epoch cycle of various learning rates to determine the best learning rate for each optimizer. Then I ran each model through both optimizers (SGD and Adam) at the best performing learning rate. I ran each model through a training session and determined the best epoch for running the test data through the model. Too many epochs, and I would be overfitting the data. Too few epochs, and I would not have an accurate enough model. You can see the Python code for all of these models in my GitHub Repository. After my extensive modeling through all 9 models for each optimizer, below are the results for each model.</p>
-          
-          <a href="#">
-            <img class="img-fluid" src="img/image_model_results.png" alt="">
-          </a>
-          <span class="caption text-muted">Results from the 9 models for both SGD and Adam optimizers</span>
-          
-          <p>As expected, the modeling leveraging the pre-trained VGG-16 covnet performed the best. I was excited to see an accuracy of 62% as when I started out with the simple NN, I was getting accuracy levels in the teens and low 20s. I felt confident that my model was sufficiently tuned and ready to run the Sports Illustrated covers through. Once I transformed the Sports Illustrated covers to an array appropriate for modeling, I ran the data through the VGG-16 Pretrained Covnet with Adam as an optimizer. The model came back lower than I expected with an accuracy rate of 28% and a loss of about 3. The low loss number was reassuring. However, for this model to be used in a real world setting, I would like to see the accuracy much higher than 28%.</p>
-          
-          <blockquote class = "blockquote">VGG16 is a convolution neural net (CNN ) architecture which was used to win ILSVR (Imagenet) competition in 2014. It is considered to be one of the excellent vision model architectures till date (Thakur, 2020)</blockquote>
-          
-          <h2 class="section-heading">Conclusion</h2>
-          
-          <p>In future iterations of this project, I would like to increase the accuracy of the model. This could be done in a variety of different ways in the modeling process. I could also look at isolating the main image and removing any additional details on the cover image that cause unwanted noise for my model. An accuracy of 28% is not as high as I would have hoped for in the beginning of this project. However, I can say that my hypothesis was correct. I was able to create a model that can accurately classify a sports image based on the details and context of the picture. Image recognition will only continue to grow with the increasing power of cell phone cameras as well as the continued adoption of smart cameras like Nest and Ring.</p>
-          
-          <blockquote class = "blockquote">The advent of digital cameras, particularly cameras built into smartphones, has led to an exponential growth in the volume of digital content in the form of images and videos. A vast amount of visual and digital data is being captured and shared through several applications, websites, social networks, and other digital channels. Several businesses have leveraged this online content to deliver better and smarter services to their customers, with the use of digital image processing. For instance, in October 2019, SnapPay Inc., a U.S. based payment platform provider, launched facial recognition payment technology in the North America region. By using this technology in its payment solution, the company has aimed at allowing its customers a new level of convenience for payments at retail outlets (Grand View Research, 2020).</blockquote>
-          
-          <p>With the fast paced growth of image collecting technology, the amount of image data that can be collected will increase exponentially. The images collected will only continue to be clearer and image recognition will be a powerful tool used in various places like grocery stores, airports, sports areas. You name it, there is most likely a camera present capturing our every move. Having all of this data to simplify and improve our lives will be a major incentive for companies in the future.</p>
-         
-          <a href="#">
-            <img class="img-fluid" src="img/image_recog_sports.png" alt="">
-          </a>
-          
-          <h2 class="section-heading">Citations</h2>
-          
-          <p>Bennett, A. J. (2020, May 2). List of Top 10 Best Sports Magazines of All Time. Retrieved April 16, 2021, from <a href>https://posora.com/best-sports-magazines/</a><p>
-
-          <p>Grand View Research. (2020, March). Image Recognition Market Size Worth $109.4 Billion By 2027. Retrieved April 16, 2021, from <a href>https://www.grandviewresearch.com/press-release/global-image-recognition-market</a></p>
-        
-          <p>mediumnok. (2021, April 19). ADAM in 2019 — What’s the next ADAM optimizer - Towards Data Science. Medium. <a href>https://towardsdatascience.com/adam-in-2019-whats-the-next-adam-optimizer-e9b4a924b34f#:%7E:text=Adam%20is%20great%2C%20it’s%20much,2019%20were%20still%20using%20SGD</a></p>
-        
-          <p>Thakur, R. (2020, November 24). Step by step VGG16 implementation in Keras for beginners. Medium. <a href>https://towardsdatascience.com/step-by-step-vgg16-implementation-in-keras-for-beginners-a833c686ae6c</a></p>
-         
+          <p> You can review my Python Code, Tableau Dashboard, and PowerPoint Presention in my a href='https://github.com/kwwaite1129/Example-Project-Work/tree/master/Flight%20Safety%20Analysis'><b><u>GitHub Repository</b></u></a> for more details on the work I performed for this project.</p>
+            
         </div>
       </div>
     </div>
