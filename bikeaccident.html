@@ -76,104 +76,76 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
            <h2 class="section-heading">Overview</h2>
-          <p>Baseball is known as America’s pastime. If you are like 20% of Americans (65M people) participating in some kind of fantasy sports (The Fantasy Sports & Gaming Association, 2020), there is a chance you have played fantasy baseball. Daily Fantasy Sports generated revenue of 2.91 billion U.S. dollars in 2019 (Statista, 2020) and is a growing industry thanks to recent legislation that has loosen sports gambling laws in America. The Supreme Court of the United States lifted the federal ban on sports betting on May 14, 2018 (Licata, 2019). Those of us who play fantasy sports are always looking for that extra edge when it comes to drafting their team for the upcoming season. For my first project this semester, I will be taking a look at various baseball player’s statistics from the previous ten seasons to create a model that will predict the fantasy points for a player in the upcoming season. I will then use those predicted next season’s fantasy points to categorize a baseball player as a regression candidate.</p>
+          <p>As a society, Americans are trying to develop a more active lifestyle for both the health benefits as well for the enjoyment that comes with getting outside. One of the most popular recreational activities in America is cycling. Cities are becoming more aware of the desire for bike trails and greenways, however, many major cities still lack an extensive trail system for bicyclists. If you would like to cover long distance on your cycling outing, you most likely will have to at some point share the road with vehicles. For a majority of reasons, this can be problematic, both for the bicyclists and the driver of the vehicle. Until sufficient bike lanes are created and greenway trail systems are matured, the road will have to be shared.</p>
           
-          <p>A player is said to be a regression candidate if they are expected to “regress to the mean” or have a season that is not as successful as they did the year previously. A regression candidate’s stats would return to normal, lower numbers compared to the previous season. This question would be beneficial for both MLB general managers and fantasy baseball managers (like myself) who are building a team. For the purposes of this project, I will be looking at this model through the lens of a fantasy baseball manager. That is not to say it could not be used by MLB general managers. However, fantasy baseball is how I will be using the model. When identifying if a player is a regression candidate, I will be comparing their expected fantasy points for the upcoming season against the points they had in the previous season. If the player's points are the same or higher than the previous season, then they will not be categorized as a regression candidate. If their expected points decrease by 10% compared to the previous season, then I will categorize them as a regression candidate.</p>
+          <p>For my project, I will be attempting to identify the high volume locations of bike accidents in St. Paul Minnesota and identify what factors lead to an area being high risk for bike accidents in St. Paul. This analysis is important for multiple reasons. For starters, bikers can use this data to avoid specific areas when planning their bike routes in order to minimize their chances of getting in an accident with a vehicle. Also, when planning future streets/bike lanes/greenways, cities will be able to use this analysis to assist them in designing roads and locations that reduce bike accidents.</p>
           
-          <h2 class="section-heading">Hypothesis</h2>
-
-          <p>My hypothesis is that I can successfully predict the amount of fantasy points a MLB player will have in the upcoming season based on past performance. When drafting a fantasy baseball team it is all about value and drafting players who can contribute the most to your team at a reasonable cost. If you take a player in the first round who is not able to live up to the expectations of their previous season(s), then your season could be in serious jeopardy. Also, when looking for sleepers or mid-round players who also have a major impact on how your team performs during the regular season, it is important to understand who had a one hit wonder type season and which player’s stats will continue to meet expectations. By looking at a variety of metrics collected on MLB players for the past ten years, I want to create a model that will allow the fantasy manager to identify which players to avoid and which players they can trust in the upcoming season during their draft.</p>
-
           <h2 class="section-heading">The Data</h2>
           
          <a href="#">
-            <img class="img-fluid" src="img/baseball_data.png" alt="">
+            <img class="img-fluid" src="img/bike_crash_data.png" alt="">
           </a>
-          <span class="caption text-muted">Sample images from the datatset I will be using to train my model.</span>
+          <span class="caption text-muted">Sample from the datatset I will be using to train my model.</span>
 
-          <p>For this project, I will be examining a database containing complete batting and pitching statistics from 1871 to 2020, plus fielding statistics, standings, team stats, managerial records and post-season data. As I mentioned above, although I have access to data going back to 1871, I will only be using data from 2010 through the 2019 season. I am only using the past ten years worth of data because baseball has shifted in playing style over the past ten years. This is mainly a result of increased use of analytics in baseball and shifting strategies due to this analytical adoption. Looking at stats from the 1950s when players were playing baseball a different style is not as useful when looking to identify regression candidates in 2021. Also, I will be excluding the 2020 season from my analysis as this was a shortened season (an outlier) due to the Covid-19 pandemic and will throw off my models.</p>
+          <p>I will be using data collected by the St. Paul Police Department to determined what characteristics are related to areas of high bike and pedestrian crashes. There was a lot of data cleanup and manipulation I had to perform. As well as creating new fields, I had to convert data types, and remove any incorrect data.</p>
           
-          <p><a href='http://www.seanlahman.com/baseball-archive/statistics/'><b>Link to the dataset</b> </a></p>
+          <p><a href='https://www.opendatanetwork.com/dataset/information.stpaul.gov/9qtp-ayhq'><b>Link to the dataset</b> </a></p>
    
           <p>In addition to the data provided by the dataset, I also had to create a couple new features I felt would be important to increase the accuracy of the model. The first column I had to create was the total fantasy points for that season. I used the standard head to head scoring system from CBS Sports to calculate these values (CBS Sports, n.d.). The next field I created was the rolling three year average of the player’s fantasy points. This gives a better snapshot of how the player typically produces compared to just the past season. I also created an overall total average fantasy points for the player. If the player had a one hit wonder season, these metrics will help the model to better understand and identify a regression candidate. Finally, I had to create a new column called Next_Year_FPTS as the dependent variable. It is the same scoring calculation as above for total fantasy points for the current season. However I had to look at the player’s stats from the next season to calculate this dependent variable that I am trying to predict with my test data.</p>
           
-          <h2 class="section-heading">Method</h2>
+          <h2 class="section-heading">Analysis</h2>
           
-          <p>For the exploratory data analysis portion of the project, I did not have to perform a whole lot of cleaning or manipulating based on the dataset. The dataset was very clean in a csv file. There were only 14 items with missing values in the pitchers data set and none in the batters dataset. Leveraging the Pandas Profiling library, I was able to see a couple of items that may cause issues in my modeling and decide how to fix those issues:</p>
+          <p>I used three models in an attempt to find the most accurate way to predict bike accidents in each of the three districts. Regression, Multiple Regression and Logistical Regression.</p>
 
+          <h4>Linear Regression</h4>
+          <p>The first approach I took to analyzing the data was using linear regression models to identify if there were any strong relationships between the data points and the amount of bike accidents in each district. Linear regression cannot be performed with categorical data points, so I had to create three new data sets for each district excluding the categorical values. Once the new data sets were created, I then used a confidence matrix to see what type of relationship each variable had to the amount of accidents in each district.  Next I created three correlation matrices for each district to get a quick snapshot of which variables had the greatest impact on the relationship to bike accidents occurring.</p>
          
-          <ul>
-            <li>There were 14 players from 2007 - 2019 that had an ERA as N/A. This is because the pitcher never successfully got a player out. ERA is calculated the total runs given up by the amount of outs a pitcher records. Since these players never recorded an out, the ERA could not be calculated. I dropped these 14 players from my analysis as they were not a significant percent of the population (0.13%) and it is a rare occurrence. I did not want to change this value to 0 because an ERA of 0 is very good and these players did the opposite of very good.</li>
-            <li>Due to trades occurring mid-season, a player could show up twice in a given year due to them changing teams/leagues/etc. I wanted to show the total points for this player for the entire year instead of showing total points on one team and total points on another team in one year. I merged these players into one row using a groupby function and then calculated their total fantasy points.</li>
-            <li>I kept the pitcher and batter datasets separate because they have different metrics and felt combining them would clutter/overcomplicate the model.</li>
-          </ul>
-              
-          <p>It was reassuring to see that a lot of the variables had a high correlation to the target variable (next_seasons_fpts) and I did not feel the need to drop any of the metrics. I did not feel the model would be cluttered and there would not be too many unnecessary variables.</p>
-        
+          <p>The next table shows the correlation coefficients for between each variable and the amount of accidents per district.  Every variable has a weak positive or negative correlation between the variable and the number of accidents in the district.</p>
+          
            <a href="#">
-            <img class="img-fluid" src="img/baseball_corr.png" alt="">
+            <img class="img-fluid" src="img/bike_crash_corr.png" alt="">
           </a>
-          <span class="caption text-muted">Correlation results for both pitchers and batters</span>
           
-          <p>Once the data was collected, inspected, and perfected, I ran my data through seven different regression algorithms to predict MLB players expected fantasy points for the upcoming season. I chose to use regression algorithms to solve this problem because this is a supervised machine learning problem (I know the values of the output and can compare the model against the actual values) and I wanted to predict a continuous variable based on the data fed into my model. The seven models I chose to run my data through include:</p>
-           
-          <ul>
-            <li>Linear Regression</li>
-            <li>Decision Tree</li>
-            <li>Random Forest</li>
-            <li>Naive Bayes</li>
-            <li>K-Nearest Neighbor</li>
-            <li>Lasso Regression</li>
-            <li>Ridge Regression</li>
-          </ul>
+          <p>Based on my analysis, you cannot say that the Biker Age, Lanes of Traffic, Speed Limit or Driver Age are a direct cause of more bike accidents. However, what you can say is that there was a weak, sometimes positive, sometimes negative relationship depending on the variable(see the able above) between Biker Age, Lanes of Traffic, Speed Limit or Driver Age and the amount of bike accidents per district.</p>
           
-          <p>For my modeling, I split my data into a test and train sets. This allowed me to tune my model and test it against independent data to get an accurate idea of how the models are working. I will also exclude 2019 data from the modeling datasets as we do not have a Next_Year_FPTS for this data. This is the data I will be feeding into my model after the modeling portion is complete for production use.</p>
-          
-          <p>Once I split my data into a testing and training set, I one hot encoded categorical variables to ensure my categorical variables would be able to be used in my regression modeling, I performed multiple feature reduction strategies including Principal Component Analysis (PCA) and Thresholding Numerical Feature Variance. For PCA, first I standardized the features so that they have the properties of a standard normal distribution with a mean of zero and a standard deviation of one. I then created the PCA with the n_components to 99% so that the variance of the original features would be retained. Thresholding Numerical Feature Variance removed the features with a low variance, i.e. likely containing little information and thus causing unwanted noise in your modeling. I created a variance threshold of 0.5. The variance threshold calculates the variance for each feature, and drops any feature that does not have a threshold greater than 0.5.</p>
-                    
-          <a href="#">
-            <img class="img-fluid" src="img/baseball_model_results.png" alt="">
+           <a href="#">
+            <img class="img-fluid" src="img/bike_crash_log.png" alt="">
           </a>
-          <span class="caption text-muted">Top 6 model results from the Batter and Pitcher models</span>
           
-          <h2 class="section-heading">Results</h2>
+          <h4>Regression Model</h4>
           
-          <p>I ran the batter and pitcher data sets through separate models to avoid overcomplicating the model with unnecessary statistics for the batter/pitcher. To determine what model is the best for predicting future player stats, I then compared the R2 and mean average error (MAE) of each model. To calculate this value, I ran the data through a 5 fold cross validated pipeline and took the mean of those five scores to calculate the final R2 and MAE of each model. In the modeling, I used all of the available, relevant statistics to predict what the next season’s fantasy points will be.</p>
+          <p>I then decided to run a few of the variables through a regression model to see what the model would say about the variables and their impact of the variation of bike accidents in St. Paul.</p>
           
-          <p>As you can see from the above modeling, the Lasso Regression model with all the original features performed best on both the pitcher and batter datasets. The R2 score was very similar for the Naive Bayes model and the Lasso Regression model. However, due to a lower MSE for the Lasso Regression model, I chose this as the model to move forward with. An R2 score of 0.76 for batters and 0.65 for pitchers indicates the model is a strong predictor of next year's fantasy points based on the independent data that was fed into the model. </p>
+          <p>The below table highlights, in the first column of what the model for each variable predicted for the number of bike accidents. For bike lanes, I chose 4 and for biker age I chose 35. This is selfishly because I usually bike on 4 lane roads and am getting close to 35.  The second column identifies whether if you had chose the the mean value of the number of accidents, would it have resulted in a significantly better or worse prediction. Based on the f Ratios and and R2 values, we would need to collect more data and additional data types to use these models when predicting the number of bike accidents by district in St. Paul, MN.</p>
           
           <a href="#">
-            <img class="img-fluid" src="img/pitchers.png" alt="">
+            <img class="img-fluid" src="img/bike_crash_reg.png" alt="">
           </a>
-          <span class="caption text-muted">Results from the pitcher modeling</span>
           
-          <p>Using the Lasso Regression model, I ran the 2019 dataset through the model to determine the upcoming 2021 projected fantasy points for a player. I then wrote a Python script that compared the player’s points to their previous season’s points to determine if the player is a regression candidate or not for the upcoming season. If their expected points decrease by 10% compared to the previous season, then I will categorize them as a regression candidate.</p>
+          <h4>Multiple Regression Model</h4>
+          
+          <p>I tried to see if a Multiple Regression Model is something that can be used with this data in an attempt to identify high risk causes for accidents by district.</p>
+          
+          <p>Based on the findings, I cannot say that this model, although better than the regression model, accurately predicts the number of bike accidents per district based on the low importance on the variables predicting the number of accidents per district. Not all the assumptions were met and we can not assume this model would not generalize to district’s bike accident volume.</p>
+          
+          <h4>Logistical Regression</h4>
+
+          <p>The next model I am attempting to use to help predict the number of accidents per district is the Logistical Regression Model. I think this model will be more useful because I will be able to pull in additional categorical data points that I was not able to use in the Regression and Multiple Regression models above.</p>
           
           <a href="#">
-            <img class="img-fluid" src="img/batters.png" alt="">
+            <img class="img-fluid" src="img/bike_crash_logit.png" alt="">
           </a>
-          <span class="caption text-muted">Results from the batter modeling</span>
+          
+          <p>The table above identified that the model is 66% accurate and above for all three districts, with the Eastern District coming in at 74% accurate. This tells me that the Logistic Regression Model is a much better use case for this data set and predicting the number of bike accidents by district.</p>
           
           <h2 class="section-heading">Conclusion</h2>
           
-          <p>Overall, I felt my project went well and my hypothesis was proven correct. Based on a high R2 score, I can confidently say my hypothesis was correct and that we can predict a player’s projected fantasy points for the upcoming season, on average, within 131 points for a batter and 226 points for a pitcher. Due to this ability, we can also successfully identify potential regression candidates for the upcoming season by comparing their projected points for the upcoming season to the previous season’s points.</p>
+          <p>Based on the analysis of the data with three models - Regression, Multiple Regression and Logistical - I can say that the correct model for predicting bike accidents in St. Paul, MN is the Logistical model. The regression and multiple regression models could only account for 10% or less of the variability in bike accident volumes per district. This is not a good predictor and we would need to collect more quantitative data in order to strengthen those models.</p>
            
-          <p>Fantasy baseball has been a hobby of mine going back to the late nineties. I credit it for sparking my interest in data and analytics as a teenager. Little did I know when my dad took me to my first fantasy draft that I would be hooked and dig through data for advantages throughout my life. Using data science to predict future fantasy sports metrics is a fun way to use data science and analytics and I credit it for getting me interested in this career path.</p>
+          <p>The Logistical Regression model however did a much better job at predicting the volume of bike accidents for each district. The accuracy of over 66% was much higher than the regression and multiple regression models and I believe this is because of the additional categorical variables that were included in this model helped the model make a more accurate prediction versus only using numerical values.</p>
          
-          <a href="#">
-            <img class="img-fluid" src="img/baseball_final.jpg" alt="">
-          </a>
+          <p>66%, 67% and 74% accuracy rate for the three models are great numbers, but this model could always do better and get stronger if it were to be used in a real life setting. I think to increase this accuracy, we would need to collect more accurate data (data quality checking) and see if there are additional metrics we can add to the model that would help strengthen the models ability to predict the volume of bike accidents based on the variables input into the model.</p>
           
-         <h2 class="section-heading">Citations</h2>
-          
-          <p>Statista. (2020, November 18). Revenue from fantasy sports in the United States 2019, by segment. Retrieved March 17, 2021, from <a href>https://www.statista.com/statistics/820972/revenue-fantasy-sports-segment/</a><p>
-
-          <p>The Fantasy Sports & Gaming Association. (2020, February 3). Industry Demographics. Retrieved March 17, 2021, from <a href>https://thefsga.org/industry-demographics/</a></p>
-        
-          <p>Licata, A. (2019, August 2). 42 states have or are moving towards legalizing sports betting – here are the states where sports betting is legal. Retrieved March 31, 2021, from <a href>https://www.businessinsider.com/states-where-sports-betting-legal-usa-2019-7?international=true&r=US&IR=T</a></p>
-        
-          <p>CBS Sports. (n.d.). 2021 CBSSports.com Free Fantasy Baseball Challenge Rules. Retrieved March 31, 2021, from <a href>https://www.cbssports.com/fantasy/baseball/games/free/rules#rules_single_scoring</a></p>
-
         </div>
       </div>
     </div>
