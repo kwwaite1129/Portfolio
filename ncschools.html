@@ -62,6 +62,250 @@
             <h1>North Carolina School Data Engineering Project</h1>
             <h2 class="subheading">Manipulated data from three separate raw data sources (CSV file, Web Scraping, and JSON files) to build a dataset for future modeling use/h2>
             <span class="meta">Project Completed May 2020</span>
+            <p></p>
+            <pan class="meta"><a href='https://github.com/kwwaite1129/Example-Project-Work/tree/master/North%20Carolina%20School%20District%20Grades%20Project'><b><u>GitHub Repository</b></u></a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+           <h2 class="section-heading">Overview</h2>
+          <p>This project was a project soley focused on the data wrangling portion of the data science project lifecycle. For this project, I had to identify, collect, and clean three seperate data sources into one dataset for future modeling purposes. I chose to collect three different datasets that contained various different information on North Carolina Schools. I a variety of different tools and techniques for obtaining and cleaning data within Python. I first had to learn how to extract data from a variety of different sources including a simple csv/excel file to web scraping and APIs. Data wrangling from the csv file was the easiest wrangling task of this project. The file was in a mostly clean format and just needed minor tweaks. Where I really had to dig in and learn new concepts was the web scraping and API ingesting tools. These techniques took quite a bit of data wrangling in order to obtain and clean the data. The data from the API was in JSON format and I had to learn JSON and how to unpack it with Python. For web scraping, I had to decipher the HTML of the web page that contained the data I wanted to capture. Once I identified where the data was stored in the HTML, I had to unpack it and create a data frame out of the column heading and body of the data.</p>
+          
+          <blockquote class = "blockquote">Data scientists spend 60% of their time on cleaning and organizing data. Collecting data sets comes second at 19% of their time, meaning data scientists spend around 80% of their time on preparing and managing data for analysis, (Forbes, 2016).</blockquote>
+          
+          <p>After I had all three of these data sources in a clean, easy to understand format, I had to write these data frames to database tables using SQLite3 in Python. This was an excellent tool that made importing pandas data frames into a SQL database easy. Once the three data sources were in a SQL database, I then had to identify the common keys to merge the data sets on. This was the school ID for the School Grades and School County databases. For the School Region database, this was the school county name. This took some trial and error to understand the different join types and how I had to join for each table. Once all three tables were merged, I was able to properly perform data analysis on my combined data set.</p>
+          
+          <p>Data visualizations were the third major thing I had to learn and complete for my term project. I used Matplotlib as well as Geopandas to create my visualizations for this project. Matplotlib is an excellent module for data visualizations in Python allowing for countless amount of customization. Geopandas was an interesting package I came across on the internet that allowed me to create a visualization on the state of North Carolina.</p>
+          
+          <a href="#">
+            <img class="img-fluid" src="img/school_sample_data.png" alt="">
+          </a>
+          <span class="caption text-muted">Sample of some of the merged data from my data wrangling.</span>
+      
+          <h2 class="section-heading">The Data</h2>
+          
+          <p>The data I used for this project came from three different sources; a csv files, an API in JSON format, and scraped web data from an HTML website. I will go into further details on each dataset below. </p>
+          
+          <p>The three data sources have a simple relationship between them. <b>The School Database</b> contains the school name, school ID, and municipality for each school in North Carolina. I then created a lookup on the <b>School District Location</b> data to determine the state region location of the school. I then created a new column with this information called school district region. I then linked these two data sources on school district name from the <b>School District Location</b> data and the municipality from the <b>School Database</b>. The <b>School Grades Data</b> connected to the <b>School Database</b> on the school code number from the <b>School Grades Data</b> and the facility id from the <b>School Database</b></p>
+          
+          <h4>School District Location(Website Data)</h4>
+          
+          <p>This site contains all of the school districts in North Carolina, as well as the education district region they reside within. The School District Location contains all of the school districts in North Carolina and state region locations. I will create a new column with this information called school district location.</p> 
+          
+          <p><a href src='https://stateboard.ncpublicschools.gov/about-sbe/education-districts'><u>Link to data</u></a></p>
+          
+          <h4>School Grades(CSV File)</h4>
+          
+          <p>This file contains the school grades for every school in North Carolina for the 2018-2019 school year. The School Grades Data contains all of the state assessed school grades based on the school’s performance on the North Carolina state testing held the previous year. I will link to the School Database on the school code number from the School Grades Data and the facility id from the School Database.</p>
+          
+          <p><a href src='https://files.nc.gov/dpi/documents/accountability/reporting/spg-report2019_october.xlsx'><u>Link to data</u></a></p>
+          
+          <h4>School Database (API Data)</h4>
+          
+          <p>This API contains location information about each school within North Carolina. The School Database contains school location information, including the school name, school ID, and school district for each school in North Carolina. The School Database will be the primary dataset I will use to connect with the other two data sources.</p>
+          <p><a href src='https://www.nconemap.gov/datasets/dea6ff0e8b4743a0ba361e13a85a4c70_3/data?orderBy=OBJECTID&orderByAsc=false'><u>Link to data</u></a></p>
+          
+          
+          <p>For this project, I will be using a sports image dataset from Kaggle that was created in December 2020. The training dataset contains over 11,000 images of 22 different sports and their labels. This dataset will be excellent for building my initial model because it contains images from a variety of sports. One major issue arose with the dataset once I began my exploratory data analysis. The dataset is robust and contains almost every major sport. However, the dataset did not contain any images for american football. This sport may not be popular world wide, however, for my project, it is necessary to include. The overwhelming majority of Sports Illustrated covers contain images from american football. Therefore, I had to create a python function that scraped over 300 images from Google image search that included american football. These images had to be appended to the original dataset I downloaded from Kaggle.</p>
+          
+          <p><a href='https://www.kaggle.com/c/logical-rythm-2k20-sports-image-classification/data'><b>Link to the dataset</b> </a></p>
+   
+          <p>Once my data is collected, cleaned, and formatted correctly for my model, I then scraped images from the Sports Illustrated website for the magazine covers from 2010-2019. I had to manually label each cover for modeling purposes.</p> 
+
+          <p><a href='https://vault.si.com/vault/archives/2010s/2019'><b>Link to where images are hosted that will be scraped</b> </a></p>
+          
+          <h2 class="section-heading">Method</h2>
+          
+          <p>For the exploratory data analysis portion of the project, I did not have to perform a lot of cleaning or manipulating on the dataset. There are only two columns in the labels dataset (image name and sport) and the images are all provided in the same size/format. As mentioned above, the only major change I made to the dataset was the addition of the images for american football. Otherwise, the images were in the correct format and did not need to be modified for modeling. I had to change the labels from a string to a numerical representation (categorical). However, that was not too difficult.</p>
+          
+          <p>Once the data was collected, inspected, and perfected, I ran my data through 9 different image recognition algorithms. I chose to run my data through various iterations of a Neural Network (NN) and Convoluted Neural Network (CNN) to see what the differences were and what tuning did to each algorithm’s accuracy. I also ran the data through two sets of optimizers for each model; SGD and Adam. I did not have a lot of experience with NNs and CNNs and wanted to see how each optimizer affected the modeling</p>
+          
+          <p>The 9 models I chose to run my data through include:</p>
+          <dl>
+            <dt>Neural Network</dt>
+              <dd>-Simple Neural Network</dd>
+              <dd>-Neural Network with L2 Regularization Penalty</dd>
+              <dd>-Neural Network with L1 Regularization Penalty</dd>
+              <dd>-Neural Network with Simultaneous L1 and L2 Regularization Penalty</dd>
+              <dd>-Neural Network with Dropout Penalty</dd>
+            <dt>Convolutional Neural Network</dt>
+              <dd>-Simple Convolutional Neural Network</dd>
+              <dd>-Convolutional Neural Network with Dropout Penalty</dd>
+              <dd>-Convolutional Neural Network with Data Augmentation and Dropout Penalty</dd>
+            <dt>Convolutional Neural Network using a Pre-Trained Covnet</dt>
+              <dd>-Pre-Trained Covnet VGG-16</dd>
+          </dl>
+              
+          <p>As this is a single-label, multiclass classification problem, I will be using the loss (the ROC curve) and accuracy of the model to validate its ability to correctly classify the images. For my modeling, I split my data into a test and train sets. This allowed me to tune my model and test it against independent data to get an accurate idea of how the models are working.</p>
+        
+           <a href="#">
+            <img class="img-fluid" src="img/adam_results.png" alt="">
+          </a>
+          <span class="caption text-muted">Accuracy and ROC curve for Adam VGG-16 modeling results</span>
+          
+          <h2 class="section-heading">Results</h2>
+          
+          <p>For my modeling, I first ran each optimizer through a 5 epoch cycle of various learning rates to determine the best learning rate for each optimizer. Then I ran each model through both optimizers (SGD and Adam) at the best performing learning rate. I ran each model through a training session and determined the best epoch for running the test data through the model. Too many epochs, and I would be overfitting the data. Too few epochs, and I would not have an accurate enough model. You can see the Python code for all of these models in my GitHub Repository. After my extensive modeling through all 9 models for each optimizer, below are the results for each model.</p>
+          
+          <a href="#">
+            <img class="img-fluid" src="img/image_model_results.png" alt="">
+          </a>
+          <span class="caption text-muted">Results from the 9 models for both SGD and Adam optimizers</span>
+          
+          <p>As expected, the modeling leveraging the pre-trained VGG-16 covnet performed the best. I was excited to see an accuracy of 62% as when I started out with the simple NN, I was getting accuracy levels in the teens and low 20s. I felt confident that my model was sufficiently tuned and ready to run the Sports Illustrated covers through. Once I transformed the Sports Illustrated covers to an array appropriate for modeling, I ran the data through the VGG-16 Pretrained Covnet with Adam as an optimizer. The model came back lower than I expected with an accuracy rate of 28% and a loss of about 3. The low loss number was reassuring. However, for this model to be used in a real world setting, I would like to see the accuracy much higher than 28%.</p>
+          
+          <blockquote class = "blockquote">VGG16 is a convolution neural net (CNN ) architecture which was used to win ILSVR (Imagenet) competition in 2014. It is considered to be one of the excellent vision model architectures till date (Thakur, 2020)</blockquote>
+          
+          <h2 class="section-heading">Conclusion</h2>
+          
+          <p>In future iterations of this project, I would like to increase the accuracy of the model. This could be done in a variety of different ways in the modeling process. I could also look at isolating the main image and removing any additional details on the cover image that cause unwanted noise for my model. An accuracy of 28% is not as high as I would have hoped for in the beginning of this project. However, I can say that my hypothesis was correct. I was able to create a model that can accurately classify a sports image based on the details and context of the picture. Image recognition will only continue to grow with the increasing power of cell phone cameras as well as the continued adoption of smart cameras like Nest and Ring.</p>
+          
+          <blockquote class = "blockquote">The advent of digital cameras, particularly cameras built into smartphones, has led to an exponential growth in the volume of digital content in the form of images and videos. A vast amount of visual and digital data is being captured and shared through several applications, websites, social networks, and other digital channels. Several businesses have leveraged this online content to deliver better and smarter services to their customers, with the use of digital image processing. For instance, in October 2019, SnapPay Inc., a U.S. based payment platform provider, launched facial recognition payment technology in the North America region. By using this technology in its payment solution, the company has aimed at allowing its customers a new level of convenience for payments at retail outlets (Grand View Research, 2020).</blockquote>
+          
+          <p>With the fast paced growth of image collecting technology, the amount of image data that can be collected will increase exponentially. The images collected will only continue to be clearer and image recognition will be a powerful tool used in various places like grocery stores, airports, sports areas. You name it, there is most likely a camera present capturing our every move. Having all of this data to simplify and improve our lives will be a major incentive for companies in the future.</p>
+         
+          <a href="#">
+            <img class="img-fluid" src="img/image_recog_sports.png" alt="">
+          </a>
+          
+          <h2 class="section-heading">Citations</h2>
+          
+          <p>Bennett, A. J. (2020, May 2). List of Top 10 Best Sports Magazines of All Time. Retrieved April 16, 2021, from <a href>https://posora.com/best-sports-magazines/</a><p>
+
+          <p>Grand View Research. (2020, March). Image Recognition Market Size Worth $109.4 Billion By 2027. Retrieved April 16, 2021, from <a href>https://www.grandviewresearch.com/press-release/global-image-recognition-market</a></p>
+        
+          <p>mediumnok. (2021, April 19). ADAM in 2019 — What’s the next ADAM optimizer - Towards Data Science. Medium. <a href>https://towardsdatascience.com/adam-in-2019-whats-the-next-adam-optimizer-e9b4a924b34f#:%7E:text=Adam%20is%20great%2C%20it’s%20much,2019%20were%20still%20using%20SGD</a></p>
+        
+          <p>Thakur, R. (2020, November 24). Step by step VGG16 implementation in Keras for beginners. Medium. <a href>https://towardsdatascience.com/step-by-step-vgg16-implementation-in-keras-for-beginners-a833c686ae6c</a></p>
+         
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+<!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="https://www.linkedin.com/in/kennethwaite">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://github.com/kwwaite1129/Example-Project-Work">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://twitter.com/ds_waite">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Kenny Waite 2021</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Clean Blog - Start Bootstrap Theme</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <!-- <div class="container">
+      <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button> -->
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="projects.html">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/schools.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>North Carolina School Data Engineering Project</h1>
+            <h2 class="subheading">Manipulated data from three separate raw data sources (CSV file, Web Scraping, and JSON files) to build a dataset for future modeling use/h2>
+            <span class="meta">Project Completed May 2020</span>
           </div>
         </div>
       </div>
