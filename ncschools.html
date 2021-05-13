@@ -76,7 +76,9 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
            <h2 class="section-heading">Overview</h2>
-          <p>This project was a project soley focused on the data wrangling portion of the data science project lifecycle. For this project, I had to identify, collect, and clean three seperate data sources into one dataset for future modeling purposes. I chose to collect three different datasets that contained various different information on North Carolina Schools. I a variety of different tools and techniques for obtaining and cleaning data within Python. I first had to learn how to extract data from a variety of different sources including a simple csv/excel file to web scraping and APIs. Data wrangling from the csv file was the easiest wrangling task of this project. The file was in a mostly clean format and just needed minor tweaks. Where I really had to dig in and learn new concepts was the web scraping and API ingesting tools. These techniques took quite a bit of data wrangling in order to obtain and clean the data. The data from the API was in JSON format and I had to learn JSON and how to unpack it with Python. For web scraping, I had to decipher the HTML of the web page that contained the data I wanted to capture. Once I identified where the data was stored in the HTML, I had to unpack it and create a data frame out of the column heading and body of the data.</p>
+          <p>This project was a project soley focused on the data wrangling portion of the data science project lifecycle. For this project, I had to identify, collect, and clean three seperate data sources into one dataset for future modeling purposes. I chose to collect three different datasets that contained various different information on North Carolina Schools. I a variety of different tools and techniques for obtaining and cleaning data within Python.</p>
+          
+          <p>I first had to learn how to extract data from a variety of different sources including a simple csv/excel file to web scraping and APIs. Data wrangling from the csv file was the easiest wrangling task of this project. The file was in a mostly clean format and just needed minor tweaks. Where I really had to dig in and learn new concepts was the web scraping and API ingesting tools. These techniques took quite a bit of data wrangling in order to obtain and clean the data. The data from the API was in JSON format and I had to learn JSON and how to unpack it with Python. For web scraping, I had to decipher the HTML of the web page that contained the data I wanted to capture. Once I identified where the data was stored in the HTML, I had to unpack it and create a data frame out of the column heading and body of the data.</p>
           
           <blockquote class = "blockquote">Data scientists spend 60% of their time on cleaning and organizing data. Collecting data sets comes second at 19% of their time, meaning data scientists spend around 80% of their time on preparing and managing data for analysis, (Gil Press, 2016).</blockquote>
           
@@ -93,7 +95,6 @@
           
           <p>The data I used for this project came from three different sources; a csv files, an API in JSON format, and scraped web data from an HTML website. I will go into further details on each dataset below. </p>
           
-          <p>The three data sources have a simple relationship between them. <b>The School Database</b> contains the school name, school ID, and municipality for each school in North Carolina. I then created a lookup on the <b>School District Location</b> data to determine the state region location of the school. I then created a new column with this information called school district region. I then linked these two data sources on school district name from the <b>School District Location</b> data and the municipality from the <b>School Database</b>. The <b>School Grades Data</b> connected to the <b>School Database</b> on the school code number from the <b>School Grades Data</b> and the facility id from the <b>School Database</b></p>
           
           <h4>School District Location (Website Data)</h4>
           
@@ -112,6 +113,8 @@
           <p>This API contains location information about each school within North Carolina. The School Database contains school location information, including the school name, school ID, and school district for each school in North Carolina. The School Database will be the primary dataset I will use to connect with the other two data sources.</p>
           <p><a href src='https://www.nconemap.gov/datasets/dea6ff0e8b4743a0ba361e13a85a4c70_3/data?orderBy=OBJECTID&orderByAsc=false'><u>Link to data</u></a></p>
 
+          <p>The three data sources have a simple relationship between them. <b>The School Database</b> contains the school name, school ID, and municipality for each school in North Carolina. I then created a lookup on the <b>School District Location</b> data to determine the state region location of the school. I then created a new column with this information called school district region. I then linked these two data sources on school district name from the <b>School District Location</b> data and the municipality from the <b>School Database</b>. The <b>School Grades Data</b> connected to the <b>School Database</b> on the school code number from the <b>School Grades Data</b> and the facility id from the <b>School Database</b></p>
+          
           <h2 class="section-heading">Method</h2>
           
           <p>In order to accomplish this this project, I had to perform different types of data wrangling and transformations on all three data sets. The most challenging data set I had to work with is the School District Location Data. This data is not in an easy to read tabular format. This data is written into chunks on a website page with separate headings for each district location. I needed to use a web page scraper to extract this information into a single table identifying the geographical region for each school district. I then had to create a join with this table and the School District Location Data and create a calculated field to look up each school district and provide the district region for each school. This portion was the most difficult because I did not know how to do either the web scraping or the database lookup/join.</p>
@@ -126,7 +129,7 @@
            <a href="#">
             <img class="img-fluid" src="img/school_final_data.png" alt="">
           </a>
-          <span class="caption text-muted">Accuracy and ROC curve for Adam VGG-16 modeling results</span>
+          <span class="caption text-muted">Final Dataset with all three merged data sources</span>
           
           <h2 class="section-heading">Analysis</h2>
           
@@ -136,10 +139,12 @@
             <img class="img-fluid" src="img/school_viz1.png" alt="">
           </a>
           
+          <p></p>
             <a href="#">
             <img class="img-fluid" src="img/school_viz2.png" alt="">
           </a>
-          
+          <p></p>
+          <p></p>
             <a href="#">
             <img class="img-fluid" src="img/school_viz3.png" alt="">
           </a>
