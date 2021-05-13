@@ -78,7 +78,7 @@
            <h2 class="section-heading">Overview</h2>
           <p>This project was a project soley focused on the data wrangling portion of the data science project lifecycle. For this project, I had to identify, collect, and clean three seperate data sources into one dataset for future modeling purposes. I chose to collect three different datasets that contained various different information on North Carolina Schools. I a variety of different tools and techniques for obtaining and cleaning data within Python. I first had to learn how to extract data from a variety of different sources including a simple csv/excel file to web scraping and APIs. Data wrangling from the csv file was the easiest wrangling task of this project. The file was in a mostly clean format and just needed minor tweaks. Where I really had to dig in and learn new concepts was the web scraping and API ingesting tools. These techniques took quite a bit of data wrangling in order to obtain and clean the data. The data from the API was in JSON format and I had to learn JSON and how to unpack it with Python. For web scraping, I had to decipher the HTML of the web page that contained the data I wanted to capture. Once I identified where the data was stored in the HTML, I had to unpack it and create a data frame out of the column heading and body of the data.</p>
           
-          <blockquote class = "blockquote">Data scientists spend 60% of their time on cleaning and organizing data. Collecting data sets comes second at 19% of their time, meaning data scientists spend around 80% of their time on preparing and managing data for analysis, (Forbes, 2016).</blockquote>
+          <blockquote class = "blockquote">Data scientists spend 60% of their time on cleaning and organizing data. Collecting data sets comes second at 19% of their time, meaning data scientists spend around 80% of their time on preparing and managing data for analysis, (Gil Press, 2016).</blockquote>
           
           <p>After I had all three of these data sources in a clean, easy to understand format, I had to write these data frames to database tables using SQLite3 in Python. This was an excellent tool that made importing pandas data frames into a SQL database easy. Once the three data sources were in a SQL database, I then had to identify the common keys to merge the data sets on. This was the school ID for the School Grades and School County databases. For the School Region database, this was the school county name. This took some trial and error to understand the different join types and how I had to join for each table. Once all three tables were merged, I was able to properly perform data analysis on my combined data set.</p>
           
@@ -128,41 +128,30 @@
           </a>
           <span class="caption text-muted">Accuracy and ROC curve for Adam VGG-16 modeling results</span>
           
-          <h2 class="section-heading">Results</h2>
+          <h2 class="section-heading">Analysis</h2>
           
-          <p>For my modeling, I first ran each optimizer through a 5 epoch cycle of various learning rates to determine the best learning rate for each optimizer. Then I ran each model through both optimizers (SGD and Adam) at the best performing learning rate. I ran each model through a training session and determined the best epoch for running the test data through the model. Too many epochs, and I would be overfitting the data. Too few epochs, and I would not have an accurate enough model. You can see the Python code for all of these models in my GitHub Repository. After my extensive modeling through all 9 models for each optimizer, below are the results for each model.</p>
+          <p>Data visualizations were the third major thing I had to learn and complete for my term project. I used Matplotlib as well as Geopandas to create my visualizations for this project. Matplotlib is an excellent module for data visualizations in Python allowing for countless amount of customization. Geopandas was an interesting package I came across on the internet that allowed me to create a visualization on the state of North Carolina. Below are some samples of the visuals I created with the newly merged data I created.</p>
           
           <a href="#">
-            <img class="img-fluid" src="img/image_model_results.png" alt="">
+            <img class="img-fluid" src="img/school_viz1.png" alt="">
           </a>
-          <span class="caption text-muted">Results from the 9 models for both SGD and Adam optimizers</span>
           
-          <p>As expected, the modeling leveraging the pre-trained VGG-16 covnet performed the best. I was excited to see an accuracy of 62% as when I started out with the simple NN, I was getting accuracy levels in the teens and low 20s. I felt confident that my model was sufficiently tuned and ready to run the Sports Illustrated covers through. Once I transformed the Sports Illustrated covers to an array appropriate for modeling, I ran the data through the VGG-16 Pretrained Covnet with Adam as an optimizer. The model came back lower than I expected with an accuracy rate of 28% and a loss of about 3. The low loss number was reassuring. However, for this model to be used in a real world setting, I would like to see the accuracy much higher than 28%.</p>
+            <a href="#">
+            <img class="img-fluid" src="img/school_viz2.png" alt="">
+          </a>
           
-          <blockquote class = "blockquote">VGG16 is a convolution neural net (CNN ) architecture which was used to win ILSVR (Imagenet) competition in 2014. It is considered to be one of the excellent vision model architectures till date (Thakur, 2020)</blockquote>
+            <a href="#">
+            <img class="img-fluid" src="img/school_viz3.png" alt="">
+          </a>
           
           <h2 class="section-heading">Conclusion</h2>
           
-          <p>In future iterations of this project, I would like to increase the accuracy of the model. This could be done in a variety of different ways in the modeling process. I could also look at isolating the main image and removing any additional details on the cover image that cause unwanted noise for my model. An accuracy of 28% is not as high as I would have hoped for in the beginning of this project. However, I can say that my hypothesis was correct. I was able to create a model that can accurately classify a sports image based on the details and context of the picture. Image recognition will only continue to grow with the increasing power of cell phone cameras as well as the continued adoption of smart cameras like Nest and Ring.</p>
-          
-          <blockquote class = "blockquote">The advent of digital cameras, particularly cameras built into smartphones, has led to an exponential growth in the volume of digital content in the form of images and videos. A vast amount of visual and digital data is being captured and shared through several applications, websites, social networks, and other digital channels. Several businesses have leveraged this online content to deliver better and smarter services to their customers, with the use of digital image processing. For instance, in October 2019, SnapPay Inc., a U.S. based payment platform provider, launched facial recognition payment technology in the North America region. By using this technology in its payment solution, the company has aimed at allowing its customers a new level of convenience for payments at retail outlets (Grand View Research, 2020).</blockquote>
-          
-          <p>With the fast paced growth of image collecting technology, the amount of image data that can be collected will increase exponentially. The images collected will only continue to be clearer and image recognition will be a powerful tool used in various places like grocery stores, airports, sports areas. You name it, there is most likely a camera present capturing our every move. Having all of this data to simplify and improve our lives will be a major incentive for companies in the future.</p>
-         
-          <a href="#">
-            <img class="img-fluid" src="img/image_recog_sports.png" alt="">
-          </a>
-          
+          <p>Overall, I throughly enjoyed this project and had fun with each problem that had to be solved for each different data set. All three data sets had their own sets of code and problem solving I had to undertake. However, I learned so much in this class I will be able to take forward with me in my data science career and am looking forward to applying these new tools in my day to day work.</p>
+           
           <h2 class="section-heading">Citations</h2>
           
-          <p>Bennett, A. J. (2020, May 2). List of Top 10 Best Sports Magazines of All Time. Retrieved April 16, 2021, from <a href>https://posora.com/best-sports-magazines/</a><p>
+          <p>Gil Press. (2016, March 23). Cleaning Big Data: Most Time-Consuming, Least Enjoyable Data Science Task, Survey Says. Retrieved May 12, 2021, from <a href>https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/?sh=129c57466f63</a><p>
 
-          <p>Grand View Research. (2020, March). Image Recognition Market Size Worth $109.4 Billion By 2027. Retrieved April 16, 2021, from <a href>https://www.grandviewresearch.com/press-release/global-image-recognition-market</a></p>
-        
-          <p>mediumnok. (2021, April 19). ADAM in 2019 — What’s the next ADAM optimizer - Towards Data Science. Medium. <a href>https://towardsdatascience.com/adam-in-2019-whats-the-next-adam-optimizer-e9b4a924b34f#:%7E:text=Adam%20is%20great%2C%20it’s%20much,2019%20were%20still%20using%20SGD</a></p>
-        
-          <p>Thakur, R. (2020, November 24). Step by step VGG16 implementation in Keras for beginners. Medium. <a href>https://towardsdatascience.com/step-by-step-vgg16-implementation-in-keras-for-beginners-a833c686ae6c</a></p>
-         
         </div>
       </div>
     </div>
