@@ -62,6 +62,8 @@
             <h1>Volunteer Tax Return Analysis</h1>
             <h2 class="subheading">A regression analysis to determine if a person's adjusted gross income played a factor in whether they would have their taxes done by a volunteer</h2>
             <span class="meta">Project Completed March 2020</span>
+            <p></p>
+            <pan class="meta"><a href='https://github.com/kwwaite1129/Example-Project-Work/tree/master/Sports%20Image%20Classifier'><b><u>GitHub Repository</b></u></a></span>
           </div>
         </div>
       </div>
@@ -73,42 +75,99 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+           <h2 class="section-heading">Overview</h2>
+          <p>Does a person's adjusted gross income play a factor in whether they will have their taxes done by a volunteer in North Carolina? That is the central question I was attempting to answer with this project. Filing taxes should be a simple and painless activity undertaken yearly by Americans. However, there are countless Americans out there who do not file taxes simply becuase they do not know how or were never taught how to file in the first place. These Americans could be leaving hundreds, to even thousands of dollars on the table. Thankfully, there are volunteers who graciously use their time and expertise to help those in need come tax time every year.</p>
+          
+          <blockquote class = "blockquote">VITA is small but mighty. In 2019, more than 80,000 volunteers prepared 3 1/2 million tax returns, (DOUGLAS, 2021).</blockquote>
+          
+          <p>I wanted to understand the demographics around those who used this volunteer tax preperation service in an attempt to further streghten the awareness and availability of the VITA program throughout the country. To start, I performed my analysis on the state of North Carolina.</p>
+          
+          <h2 class="section-heading">Hypothesis</h2>
 
-          <p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+          <p>My hypothesis is yes, people in lower income tax groupings take advantage of volunteer tax return services more than people in higher income tax groupings. I also wanted to look at other variables to see if there were any trends in volunteer prepared returns and the people who are more likely to use this service including:</p>
 
-          <p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
-
-          <p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
-
-          <p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
-
-          <h2 class="section-heading">The Final Frontier</h2>
-
-          <p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
-
-          <p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
-
-          <blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
-
-          <p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
-
-          <h2 class="section-heading">Reaching for the Stars</h2>
-
-          <p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
-
+          <ul>
+            <li>The number of dependents for tax filer</li>
+            <li>City</li>
+            <li>Farm Returns</li>
+            <li>Students</li>
+          </ul>
+          
+          <h2 class="section-heading">The Data</h2>
+          
           <a href="#">
-            <img class="img-fluid" src="img/post-sample-image.jpg" alt="">
+            <img class="img-fluid" src="img/tax_data.png" alt="">
           </a>
-          <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+          <span class="caption text-muted">Sample of the datatset I will be using to perform my analysis.</span>
 
-          <p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
+          <p>I used the 2017 Individual Income and Tax Data from IRS.gov. This dataset is from the IRS' Statistics of Income (SOI) Division that uses individual income tax returns for the tax year 2017. The dataset contains a variable called AGI_STUB. This variable is broken down into ten subcategories based on adjusted gross income grouping. I used these nine subcategories along with the variable TOTAL_VITA, which is the total number of volunteer prepared returns for each sub AGI_STUB category.</p>
+          
+          <a href="#">
+            <img class="mx-auto d-block" src="img/tax_cats.png" alt="">
+          </a>
+          <span class="caption text-muted">AGI_STUB categories</span>
+          
+          <p>In addition to AGI_STUB and TOTAL_VITA, I will be looking at the variables STATE, N1, NUMDEP, SCHF and A03210. These variables are defined as:</p>
 
-          <p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
+          <ul>
+            <li><b>STATE</b>: The state associated with the return. </li>
+            <li><b>N1</b>: The total number of returns</li>
+            <li><b>NUMDEP</b>: The total number of dependents</li>
+            <li><b>SCHF</b>: The total number of farm returns</li>
+            <li><b>A03210:</b>: The total amount Student loan interest deduction amount</li>
+            <li><b>N19300:</b>: Number of returns with mortgage interest paid</li>
+          </ul>
+          
+          <p><a href='https://www.irs.gov/pub/irs-soi/17in54cmcsv.csv'><b>Link to the dataset</b> </a></p>
+   
+          <h2 class="section-heading">Method</h2>
+          
+          <p>This project was mainly focused on the exploratory data analysis (EDA) portion of the Data Science project life cycle/ Therefore, I went into depth on the various EDA aspects of the data.</p>
+          
+          <p>I first created visuals of the distributions of the data to understand their skewness, if there were any skew or kurtosis, and performed an outlier analysis.</p>
+          
+           <a href="#">
+            <img class="mx-auto d-block" src="img/tax_dists.png" alt="">
+          </a>
+          <span class="caption text-muted">Distirbutions of the total volunteer prepared returns and overall total returns</span>
+          
+          <p> I created a cumulative distribution function (CDF) and it showed that the most common values are are between 20 and 100. This means the most common amount of volunteer tax returns by zip code is between 20 and 100. Also, the CDF showed me that about 10% of volunteer tax returns are between 0-10 and about 90% are less than 300 volunteer filed tax returns.</p> 
+      
+          <a href="#">
+            <img class="mx-auto d-block" src="img/tax_cdf.png" alt="">
+          </a>
+          <span class="caption text-muted">Total Volunteer Tax Returns CDF</span>
+          
+          <p>Plotting the variables on a scatter plot highlighted that there was negative linear relationship between the number of volunteer tax returns filed and the income grouping. This calculation tells us that as income increases, the number of volunteer tax returns decrease. This correlation doesn't imply causation. The correlation is only telling us which direction the two variables move together</p>
+          
+          <a href="#">
+            <img class="mx-auto d-block" src="img/tax_scatter.png" alt="">
+          </a>
+          <span class="caption text-muted">Scatterplot of the number of volunteer tax returns and income grouping</span>
+          
+          <p>A second plot of the number student filed tax returns and the number of volunteer filed tax returns resulted in a positive linear relationship. this calculation tells us that as number student tax return filers increases, the number of volunteer tax returns increases.</p>
+          
+          <a href="#">
+            <img class="mx-auto d-block" src="img/tax_scatter2.png" alt="">
+          </a>
+          <span class="caption text-muted">Scatterplot of the number of volunteer tax returns and student filed returns</span>
+          
+          <p>Once the data was collected, inspected, and perfected, I ran my data through a single variable regression and a multivariate regression analysis to determine if the variables I had chosen were high quality predictors of the number of volunteer prepared tax returns.</p>
+          
+          <h2 class="section-heading">Results</h2>
+          
+          <p>When performing a single variable regression analysis on the effect of income grouping on volunteer tax return, the R squared resulted in 0.11 with a p-value less than 0.05. This indicates that the model is statistically significant with the income grouping predicting 11% of variance in the amount of volunteer tax returns filed.</p>
+          
+          <p>When performing a mulitple variable regression analysis on the effect of income grouping, student filed tax returns on volunteer tax return, the R squared resulted in 0.11 with a p-value less than 0.05. This indicates that the model is statistically significant with the income grouping predicting 11% of variance in the amount of volunteer tax returns filed.</p>
+          
+          <h2 class="section-heading">Conclusion</h2>
+          
+          <p> My exploratory data analysis (EDA) resulted in a couple of different findings from the various exploratory testing performed on the data. All five of my variables mentioned above skewed left towards zero. This is why I chose to use Spearman’s Rank correlation test statistic instead of Pearson’s Correlation test for validation. The last, and maybe most important finding from my EDA was that there was a stistcically significant relationship between the income grouping and the number of volunteer tax returns filed by zip code. When performing a regression analysis on the effect of income grouping on volunteer tax return, the R squared resulted in 0.11 with a p-value less than 0.05. This indicates that the model is statistically significant with the income grouping predicting 11% of variance in the amount of volunteer tax returns filed.</p>
+          
+          <h2 class="section-heading">Citations</h2>
+          
+          <p>DOUGLAS, S. (2021, May 5). The VITA(L) Role Of Free Tax Prep. Retrieved May 12, 2021, from <a href>https://choice.npr.org/index.html?origin=https://www.npr.org/transcripts/993965671 </a><p>
 
-          <p>Placeholder text by
-            <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by
-            <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p>
         </div>
       </div>
     </div>
@@ -147,7 +206,7 @@
               </a>
             </li>
           </ul>
-          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+          <p class="copyright text-muted">Copyright &copy; Kenny Waite 2021</p>
         </div>
       </div>
     </div>
