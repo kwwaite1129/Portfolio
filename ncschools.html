@@ -95,13 +95,13 @@
           
           <p>The three data sources have a simple relationship between them. <b>The School Database</b> contains the school name, school ID, and municipality for each school in North Carolina. I then created a lookup on the <b>School District Location</b> data to determine the state region location of the school. I then created a new column with this information called school district region. I then linked these two data sources on school district name from the <b>School District Location</b> data and the municipality from the <b>School Database</b>. The <b>School Grades Data</b> connected to the <b>School Database</b> on the school code number from the <b>School Grades Data</b> and the facility id from the <b>School Database</b></p>
           
-          <h4>School District Location(Website Data)</h4>
+          <h4>School District Location (Website Data)</h4>
           
           <p>This site contains all of the school districts in North Carolina, as well as the education district region they reside within. The School District Location contains all of the school districts in North Carolina and state region locations. I will create a new column with this information called school district location.</p> 
           
           <p><a href src='https://stateboard.ncpublicschools.gov/about-sbe/education-districts'><u>Link to data</u></a></p>
           
-          <h4>School Grades(CSV File)</h4>
+          <h4>School Grades (CSV File)</h4>
           
           <p>This file contains the school grades for every school in North Carolina for the 2018-2019 school year. The School Grades Data contains all of the state assessed school grades based on the school’s performance on the North Carolina state testing held the previous year. I will link to the School Database on the school code number from the School Grades Data and the facility id from the School Database.</p>
           
@@ -111,42 +111,20 @@
           
           <p>This API contains location information about each school within North Carolina. The School Database contains school location information, including the school name, school ID, and school district for each school in North Carolina. The School Database will be the primary dataset I will use to connect with the other two data sources.</p>
           <p><a href src='https://www.nconemap.gov/datasets/dea6ff0e8b4743a0ba361e13a85a4c70_3/data?orderBy=OBJECTID&orderByAsc=false'><u>Link to data</u></a></p>
-          
-          
-          <p>For this project, I will be using a sports image dataset from Kaggle that was created in December 2020. The training dataset contains over 11,000 images of 22 different sports and their labels. This dataset will be excellent for building my initial model because it contains images from a variety of sports. One major issue arose with the dataset once I began my exploratory data analysis. The dataset is robust and contains almost every major sport. However, the dataset did not contain any images for american football. This sport may not be popular world wide, however, for my project, it is necessary to include. The overwhelming majority of Sports Illustrated covers contain images from american football. Therefore, I had to create a python function that scraped over 300 images from Google image search that included american football. These images had to be appended to the original dataset I downloaded from Kaggle.</p>
-          
-          <p><a href='https://www.kaggle.com/c/logical-rythm-2k20-sports-image-classification/data'><b>Link to the dataset</b> </a></p>
-   
-          <p>Once my data is collected, cleaned, and formatted correctly for my model, I then scraped images from the Sports Illustrated website for the magazine covers from 2010-2019. I had to manually label each cover for modeling purposes.</p> 
 
-          <p><a href='https://vault.si.com/vault/archives/2010s/2019'><b>Link to where images are hosted that will be scraped</b> </a></p>
-          
           <h2 class="section-heading">Method</h2>
           
-          <p>For the exploratory data analysis portion of the project, I did not have to perform a lot of cleaning or manipulating on the dataset. There are only two columns in the labels dataset (image name and sport) and the images are all provided in the same size/format. As mentioned above, the only major change I made to the dataset was the addition of the images for american football. Otherwise, the images were in the correct format and did not need to be modified for modeling. I had to change the labels from a string to a numerical representation (categorical). However, that was not too difficult.</p>
+          <p>In order to accomplish this this project, I had to perform different types of data wrangling and transformations on all three data sets. The most challenging data set I had to work with is the School District Location Data. This data is not in an easy to read tabular format. This data is written into chunks on a website page with separate headings for each district location. I needed to use a web page scraper to extract this information into a single table identifying the geographical region for each school district. I then had to create a join with this table and the School District Location Data and create a calculated field to look up each school district and provide the district region for each school. This portion was the most difficult because I did not know how to do either the web scraping or the database lookup/join.</p>
           
-          <p>Once the data was collected, inspected, and perfected, I ran my data through 9 different image recognition algorithms. I chose to run my data through various iterations of a Neural Network (NN) and Convoluted Neural Network (CNN) to see what the differences were and what tuning did to each algorithm’s accuracy. I also ran the data through two sets of optimizers for each model; SGD and Adam. I did not have a lot of experience with NNs and CNNs and wanted to see how each optimizer affected the modeling</p>
+          <p>Finally, I had to join the School Grades Data with the School Database on the school code number from the School Grades Data and the facility id from the School Database. These are the unique keys for each school that I can link between the two datasets. This part was not be as difficult as there is a one to one relationship for school each school in each database. The School Grades Data and the School Database are relatively clean data sources. However, I had to do some analysis to review for duplicates, errors in the data, and identifying any additional inconsistencies in the data. Also, I had to ensure every school received a grade. If the school did not receive a grade, I removed those schools. I investigated the reason for a school not having a grade further to ensure the removal will not throw off the analysis, and the schools did not receive a grade for a specific reason.</p>
           
-          <p>The 9 models I chose to run my data through include:</p>
-          <dl>
-            <dt>Neural Network</dt>
-              <dd>-Simple Neural Network</dd>
-              <dd>-Neural Network with L2 Regularization Penalty</dd>
-              <dd>-Neural Network with L1 Regularization Penalty</dd>
-              <dd>-Neural Network with Simultaneous L1 and L2 Regularization Penalty</dd>
-              <dd>-Neural Network with Dropout Penalty</dd>
-            <dt>Convolutional Neural Network</dt>
-              <dd>-Simple Convolutional Neural Network</dd>
-              <dd>-Convolutional Neural Network with Dropout Penalty</dd>
-              <dd>-Convolutional Neural Network with Data Augmentation and Dropout Penalty</dd>
-            <dt>Convolutional Neural Network using a Pre-Trained Covnet</dt>
-              <dd>-Pre-Trained Covnet VGG-16</dd>
-          </dl>
-              
-          <p>As this is a single-label, multiclass classification problem, I will be using the loss (the ROC curve) and accuracy of the model to validate its ability to correctly classify the images. For my modeling, I split my data into a test and train sets. This allowed me to tune my model and test it against independent data to get an accurate idea of how the models are working.</p>
-        
+          <blockquote class = "blockquote">select grades_counties.*, regions.Region FROM grades_counties LEFT JOIN regions on grades_counties.COUNTY = regions.COUNTY</blockquote>
+          <span class="caption text-muted">SQL used to merge the data together.</span>
+          
+          <p>After I had all three of these data sources in a clean, easy to understand format, I had to write these data frames to database tables using SQLite3 in Python. This was an excellent tool that made importing pandas data frames into a SQL database easy. Once the three data sources were in a SQL database, I then had to identify the common keys to merge the data sets on. This was the school ID for the School Grades and School County databases. For the School Region database, this was the school county name. This took some trial and error to understand the different join types and how I had to join for each table. Once all three tables were merged, I was able to properly perform data analysis on my combined data set.</p>
+
            <a href="#">
-            <img class="img-fluid" src="img/adam_results.png" alt="">
+            <img class="img-fluid" src="img/school_final_data.png" alt="">
           </a>
           <span class="caption text-muted">Accuracy and ROC curve for Adam VGG-16 modeling results</span>
           
