@@ -59,7 +59,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1>MLB Statistic Prediction</h1>
+            <h1>Customer Volume Time Series Forecast</h1>
             <h2 class="subheading">A time series forecast model to predict future customer volumes of a large financial institution</h2>
             <span class="meta">Project Completed June 2021</span>
             <p></p>
@@ -86,7 +86,7 @@
 
           <h2 class="section-heading">The Data</h2>
           
-          <p>For this project, I will be examining a dataset of TCIs for all customer facing channels of a large financial institution for the past 5 years (2015-2020). Unfortunately, due to proprietary and privacy constraints, I will not be able to share specific data and will have to use “dummy” data throughout my presentation. However, I will thoroughly detail my steps in the data cleaning and modeling processes to provide a clear understanding of how the data was used.<a href='https://www.iedunote.com/bank-services'><b>Here is an article</b></a> that highlights common services provided by large financial institutions so you have an idea of what kind of interactions are collected.</p>
+          <p>For this project, I will be examining a dataset of TCIs for all customer facing channels of a large financial institution for the past 5 years (2015-2020). Unfortunately, due to proprietary and privacy constraints, I will not be able to share specific data and will have to use “dummy” data throughout my presentation. However, I will thoroughly detail my steps in the data cleaning and modeling processes to provide a clear understanding of how the data was used. <a href='https://www.iedunote.com/bank-services'><b>Here is an article</b></a> that highlights common services provided by large financial institutions so you have an idea of what kind of interactions are collected.</p>
    
           <p>The data contains TCIs from 12 different lines of business at the financial institution. The data is provided in both daily and monthly volumes. This is due to some lines of business reporting TCIs on a daily cycle and some reporting on a monthly cycle. In order to create an accurate forecast model, I want to present the data on a monthly total TCI volume. To accomplish this, I had to perform some manipulation of the data to ensure it totaled in that format for modeling. The data was arranged with each day in a separate row and with column headings of Daily TCIs, Monthly TCIs, and Date. The Daily TCIs is the total TCIs for all channels that report on a daily basis. The Monthly TCIs is the total TCIs for all channels that report on a monthly basis. I then grouped the Monthly TCIs by year and divided by 365 days to get the average daily volume for TCIs reported on a monthly basis. Then I added this number to each day's Daily TCIs column to come up with a new column labeled Total TCIs. This is the number I will be attempting to predict in the future with my time series forecasting model. I then grouped this daily data by total TCIs for each month to present the data on a monthly basis for modeling.</p>
           
